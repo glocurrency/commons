@@ -29,6 +29,10 @@ func NewClient() (Client, error) {
 	return Client{app: app}, nil
 }
 
+func (c Client) Application() *newrelic.Application {
+	return c.app
+}
+
 func (c Client) StartTransaction(name string) *newrelic.Transaction {
 	return c.app.StartTransaction(name)
 }
