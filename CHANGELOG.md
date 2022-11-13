@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.6.2](https://www.github.com/glocurrency/commons/compare/v0.6.1...v0.6.2) (2022-11-13)
+
+
+### Bug Fixes
+
+* add email ([e60eea2](https://www.github.com/glocurrency/commons/commit/e60eea2bdda9ade898cfb5a8fa9b22b6626ab156))
+
 ### [0.6.1](https://www.github.com/glocurrency/commons/compare/v0.6.0...v0.6.1) (2022-11-13)
 
 
