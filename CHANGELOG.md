@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://www.github.com/glocurrency/commons/compare/v0.5.0...v0.6.0) (2022-11-13)
+
+
+### Features
+
+* use response ([59606cb](https://www.github.com/glocurrency/commons/commit/59606cb3385a91dc3f8ded67b5ca1c31b066f0e4))
+
 ## [0.5.0](https://www.github.com/glocurrency/commons/compare/v0.4.0...v0.5.0) (2022-11-13)
 
 
