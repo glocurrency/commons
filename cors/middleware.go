@@ -8,6 +8,7 @@ import (
 // AllowAllMiddleware is a middleware that allows all origins and headers with default methods.
 func AllowAllMiddleware() gin.HandlerFunc {
 	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
 	config.AllowHeaders = []string{"*"}
 	return cors.New(config)
 }
