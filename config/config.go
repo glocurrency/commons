@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"net/http"
 	"net/url"
 	"strings"
 	"time"
@@ -14,6 +15,17 @@ type HTTPServer struct {
 	ReadTimeout  time.Duration
 	WriteTimeout time.Duration
 	IdleTimeout  time.Duration
+}
+
+// CreateServer creates a new HTTP server from the given config.
+func (s *HTTPServer) NewServer(h http.Handler) *http.Server {
+	return &http.Server{
+		Addr:         s.Addr,
+		ReadTimeout:  s.ReadTimeout,
+		WriteTimeout: s.WriteTimeout,
+		IdleTimeout:  s.IdleTimeout,
+		Handler:      h,
+	}
 }
 
 type HTTPClient struct {
