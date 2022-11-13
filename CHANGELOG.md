@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://www.github.com/glocurrency/commons/compare/v0.1.0...v0.2.0) (2022-11-13)
+
+
+### Features
+
+* add `server` ([2858143](https://www.github.com/glocurrency/commons/commit/2858143d8454c6edb5d4940643488182f1bfbdc5))
+* add NewServer ([b557ee2](https://www.github.com/glocurrency/commons/commit/b557ee2dcf31b6f63c39b3b360b4d5e570329c74))
+
 ## 0.1.0 (2022-11-12)
 
 
