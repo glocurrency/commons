@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.6.1](https://www.github.com/glocurrency/commons/compare/v0.6.0...v0.6.1) (2022-11-13)
+
+
+### Bug Fixes
+
+* `AllowAllOrigins` ([377219a](https://www.github.com/glocurrency/commons/commit/377219a39701f2a4e2354f15fb16e43f519bcbf4))
+
 ## [0.6.0](https://www.github.com/glocurrency/commons/compare/v0.5.0...v0.6.0) (2022-11-13)
 
 
