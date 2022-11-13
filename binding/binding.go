@@ -22,14 +22,14 @@ func ParseParamUUID(ctx *gin.Context, name string) (uuid.UUID, error) {
 
 // MustParseParamUUID parses the param from the request as UUID.
 // If it fails it will abort the request with an error response.
-func MustParseParamUUID(ctx *gin.Context, name string) (uuid.UUID, error) {
+func MustParseParamUUID(ctx *gin.Context, name string) (uuid.UUID, bool) {
 	id, err := ParseParamUUID(ctx, name)
 	if err != nil {
 		ctx.AbortWithStatusJSON(erresp.NewErrResponseBadRequest(fmt.Sprintf("Invalid param %s", name)))
-		return id, err
+		return id, false
 	}
 
-	return id, nil
+	return id, true
 }
 
 // DecodeBody decodes the request body.
