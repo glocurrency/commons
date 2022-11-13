@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/glocurrency/commons/compare/v0.3.0...v0.4.0) (2022-11-13)
+
+
+### Features
+
+* put erresp to commons ([efb67ec](https://www.github.com/glocurrency/commons/commit/efb67ec1927547053f87010abd03628cb0ac35d8))
+
 ## [0.3.0](https://www.github.com/glocurrency/commons/compare/v0.2.0...v0.3.0) (2022-11-13)
 
 
