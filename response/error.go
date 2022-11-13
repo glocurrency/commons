@@ -1,4 +1,4 @@
-package erresp
+package response
 
 import "net/http"
 
