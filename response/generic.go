@@ -10,16 +10,16 @@ func NewSingleResponse[T any](model T) (int, SingleResponse[T]) {
 	return http.StatusOK, SingleResponse[T]{Data: model}
 }
 
+func NewSingleResponseCreated[T any](model T) (int, SingleResponse[T]) {
+	return http.StatusCreated, SingleResponse[T]{Data: model}
+}
+
 type ManyResponse[T any] struct {
 	Data []T `json:"data"`
 }
 
 func NewManyResponse[T any](models []T) (int, ManyResponse[T]) {
 	return http.StatusOK, ManyResponse[T]{Data: models}
-}
-
-func NewManyResponseCreated[T any](models []T) (int, ManyResponse[T]) {
-	return http.StatusCreated, ManyResponse[T]{Data: models}
 }
 
 type ManyResponsePaginated[T any] struct {
