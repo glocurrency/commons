@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.7.0](https://www.github.com/glocurrency/commons/compare/v0.6.1...v0.7.0) (2022-11-14)
+
+
+### Features
+
+* add `ManyResponsePaginated` ([659ccc3](https://www.github.com/glocurrency/commons/commit/659ccc3c5b97cb9e9bca539dcf71398f865b97ed))
+* add `NewErrResponseException` ([391cf02](https://www.github.com/glocurrency/commons/commit/391cf026d364ce41e1dc4b69b3782c6fe97aa43b))
+
+
+### Bug Fixes
+
+* add email ([e60eea2](https://www.github.com/glocurrency/commons/commit/e60eea2bdda9ade898cfb5a8fa9b22b6626ab156))
+
 ### [0.6.1](https://www.github.com/glocurrency/commons/compare/v0.6.0...v0.6.1) (2022-11-13)
 
 
