@@ -47,3 +47,10 @@ func NewErrResponseValidationErrors(message string, errors map[string]string) (i
 		Errors:  errors,
 	}
 }
+
+func NewErrResponseException(message string) (int, ErrResponse) {
+	return http.StatusInternalServerError, ErrResponse{
+		Code:    http.StatusInternalServerError,
+		Message: message,
+	}
+}
