@@ -15,3 +15,16 @@ type ManyResponse[T any] struct {
 func NewManyResponse[T any](models []T) ManyResponse[T] {
 	return ManyResponse[T]{Data: models}
 }
+
+type ManyResponsePaginated[T any] struct {
+	Data       []T `json:"data"`
+	Pagination struct {
+		Total int64 `json:"total"`
+	} `json:"pagination"`
+}
+
+func NewManyResponsePaginated[T any](models []T, total int64) ManyResponsePaginated[T] {
+	resp := ManyResponsePaginated[T]{Data: models}
+	resp.Pagination.Total = total
+	return resp
+}
