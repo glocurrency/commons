@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.10.0](https://www.github.com/glocurrency/commons/compare/v0.9.0...v0.10.0) (2022-11-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* simplify `AuthenticateRequest`
+
+### Bug Fixes
+
+* simplify `AuthenticateRequest` ([19e61e1](https://www.github.com/glocurrency/commons/commit/19e61e1984c941712cb4250a6c7a5a075b3940d4))
+
 ## [0.9.0](https://www.github.com/glocurrency/commons/compare/v0.8.0...v0.9.0) (2022-11-16)
 
 
