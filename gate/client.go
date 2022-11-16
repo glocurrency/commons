@@ -53,8 +53,8 @@ func (c *Client) GenerateJWT(serviceAccount string, expiry int64) (string, error
 	return resp.SignedJwt, nil
 }
 
-func (c *Client) AuthenticateRequest(req *http.Request, serviceAccount string, expiry int64) error {
-	jwt, err := c.GenerateJWT(serviceAccount, expiry)
+func (c *Client) AuthenticateRequest(req *http.Request, serviceAccount string) error {
+	jwt, err := c.GenerateJWT(serviceAccount, 3600)
 	if err != nil {
 		return fmt.Errorf("error generating jwt: %w", err)
 	}
