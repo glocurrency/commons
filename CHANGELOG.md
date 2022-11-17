@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://www.github.com/glocurrency/commons/compare/v0.11.0...v0.12.0) (2022-11-17)
+
+
+### Features
+
+* marshall task data ([3b7ea38](https://www.github.com/glocurrency/commons/commit/3b7ea3814dcb90aa5a87d509be4fbfe30dd7c6ae))
+
 ## [0.11.0](https://www.github.com/glocurrency/commons/compare/v0.10.0...v0.11.0) (2022-11-17)
 
 
