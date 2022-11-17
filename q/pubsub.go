@@ -7,6 +7,11 @@ import (
 	"cloud.google.com/go/pubsub"
 )
 
+type IPubSubQ interface {
+	// Enqueue enqueues a task to the Pub/Sub queue.
+	Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) (*TaskInfo, error)
+}
+
 type PubSubQ struct {
 	client *pubsub.Client
 }

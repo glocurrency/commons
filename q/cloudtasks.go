@@ -14,6 +14,11 @@ type Config interface {
 	GetBaseUrl() string
 }
 
+type ICloudTasksQ interface {
+	// Enqueue enqueues a task to the ClousTasks queue.
+	Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (*TaskInfo, error)
+}
+
 type CloudTasksQ struct {
 	cfg    Config
 	client *cloudtasks.Client
