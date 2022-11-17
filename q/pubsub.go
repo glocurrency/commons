@@ -38,9 +38,12 @@ func (q *PubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption)
 
 	for _, opt := range opts {
 		switch opt := opt.(type) {
-		case orderedOption:
+		case orderedKeyOption:
 			topic.EnableMessageOrdering = true
 			message.OrderingKey = string(opt)
+		case orderedByTaskNameOption:
+			topic.EnableMessageOrdering = true
+			message.OrderingKey = task.typename
 		}
 	}
 
