@@ -11,8 +11,8 @@ type Message interface {
 	UnmarshalData(v interface{}) error
 }
 
-// UniqueKeyKey is the key used to store the unique ID in the message attributes.
-const UniqueKeyKey = "unique"
+// uniqueKeyKey is the key used to store the unique ID in the message attributes.
+const uniqueKeyKey = "uniqueKey"
 
 // PubSubMessage is the payload of a Pub/Sub event.
 // See the documentation for more details:
@@ -29,7 +29,7 @@ type PubSubMessage struct {
 }
 
 func (m *PubSubMessage) GetUniqueKey() string {
-	raw, ok := m.Message.Attributes[UniqueKeyKey]
+	raw, ok := m.Message.Attributes[uniqueKeyKey]
 	if !ok {
 		return ""
 	}

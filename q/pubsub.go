@@ -32,7 +32,7 @@ func (q *PubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption)
 	for _, opt := range task.opts {
 		switch opt := opt.(type) {
 		case uniqueKeyOption:
-			message.Attributes["unique_key"] = string(opt)
+			message.Attributes[uniqueKeyKey] = string(opt)
 		}
 	}
 
