@@ -1,0 +1,10 @@
+{
+    "message": {
+        "data": "UnVubmVy",
+        "messageId": "12345",
+        "message_id": "12345",
+        "publishTime": "2022-11-15T14:38:33.816Z",
+        "publish_time": "2022-11-15T14:38:33.816Z"
+    },
+    "subscription": "projects/example/subscriptions/test"
+}
