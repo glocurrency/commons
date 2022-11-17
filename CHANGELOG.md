@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.11.0](https://www.github.com/glocurrency/commons/compare/v0.10.0...v0.11.0) (2022-11-17)
+
+
+### Features
+
+* add `q` ([106977a](https://www.github.com/glocurrency/commons/commit/106977a80ae2e737858c1afcdee2df323522fdee))
+* add interface ([a71bb48](https://www.github.com/glocurrency/commons/commit/a71bb483a80a9bd3958086431095a1fd67e2f61f))
+
+
+### Bug Fixes
+
+* use unique key ([7bf9640](https://www.github.com/glocurrency/commons/commit/7bf96402438ad2dce78df3111cf2f8278d5c999d))
+
 ## [0.10.0](https://www.github.com/glocurrency/commons/compare/v0.9.0...v0.10.0) (2022-11-16)
 
 
