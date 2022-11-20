@@ -25,35 +25,33 @@ func (q *PubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption)
 
 	message := &pubsub.Message{
 		Data:       task.payload,
-		Attributes: map[string]string{},
+		Attributes: map[string]string{nameKey: task.typename},
 	}
 
 	for _, opt := range task.opts {
 		switch opt := opt.(type) {
 		case uniqueKeyOption:
 			message.Attributes[uniqueKeyKey] = string(opt)
-		}
-	}
-
-	for _, opt := range opts {
-		switch opt := opt.(type) {
-		case orderedKeyOption:
-			message.OrderingKey = string(opt)
-		case orderedByTaskNameOption:
-			message.OrderingKey = task.typename
-		case topicOption:
+		case groupOption:
 			topicID = string(opt)
 		}
 	}
 
-	message.Attributes[topicKey] = topicID
+	message.Attributes[groupKey] = topicID
 
 	topic := q.client.Topic(topicID)
 	defer topic.Stop()
 
-	// no harm in always enabling this feature
-	// since it depends if OrderingKey is empty or not.
-	topic.EnableMessageOrdering = true
+	for _, opt := range opts {
+		switch opt := opt.(type) {
+		case orderedKeyOption:
+			topic.EnableMessageOrdering = true
+			message.OrderingKey = string(opt)
+		case orderedByTaskNameOption:
+			topic.EnableMessageOrdering = true
+			message.OrderingKey = task.typename
+		}
+	}
 
 	result := topic.Publish(ctx, message)
 

@@ -14,8 +14,11 @@ type Message interface {
 // uniqueKeyKey is the key used to store the unique ID in the message attributes.
 const uniqueKeyKey = "uniqueKey"
 
-// topicKey is the key used to store the topic ID in the message attributes.
-const topicKey = "topicKey"
+// nameKey is the key used to store the name in the message attributes.
+const nameKey = "nameKey"
+
+// groupKey is the key used to store the group ID in the message attributes.
+const groupKey = "groupKey"
 
 // PubSubMessage is the payload of a Pub/Sub event.
 // See the documentation for more details:
@@ -39,8 +42,16 @@ func (m *PubSubMessage) GetUniqueKey() string {
 	return raw
 }
 
-func (m *PubSubMessage) GetTopicKey() string {
-	raw, ok := m.Message.Attributes[topicKey]
+func (m *PubSubMessage) GetName() string {
+	raw, ok := m.Message.Attributes[nameKey]
+	if !ok {
+		return ""
+	}
+	return raw
+}
+
+func (m *PubSubMessage) GetGroup() string {
+	raw, ok := m.Message.Attributes[groupKey]
 	if !ok {
 		return ""
 	}
