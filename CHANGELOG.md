@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.15.0](https://www.github.com/glocurrency/commons/compare/v0.14.0...v0.15.0) (2022-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* specify group and pass the name
+
+### Features
+
+* specify group and pass the name ([bb7dab6](https://www.github.com/glocurrency/commons/commit/bb7dab6b41112003eb064fd308b130ab936b383c))
+* write topic to the attributes ([1660130](https://www.github.com/glocurrency/commons/commit/166013057f3e61c238bae08c4a8990f0fc4c69eb))
+
 ## [0.14.0](https://www.github.com/glocurrency/commons/compare/v0.13.0...v0.14.0) (2022-11-20)
 
 
