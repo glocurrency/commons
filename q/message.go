@@ -14,6 +14,9 @@ type Message interface {
 // uniqueKeyKey is the key used to store the unique ID in the message attributes.
 const uniqueKeyKey = "uniqueKey"
 
+// topicKey is the key used to store the topic ID in the message attributes.
+const topicKey = "topicKey"
+
 // PubSubMessage is the payload of a Pub/Sub event.
 // See the documentation for more details:
 // https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage
@@ -33,7 +36,14 @@ func (m *PubSubMessage) GetUniqueKey() string {
 	if !ok {
 		return ""
 	}
+	return raw
+}
 
+func (m *PubSubMessage) GetTopicKey() string {
+	raw, ok := m.Message.Attributes[topicKey]
+	if !ok {
+		return ""
+	}
 	return raw
 }
 

@@ -46,6 +46,8 @@ func (q *PubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption)
 		}
 	}
 
+	message.Attributes[topicKey] = topicID
+
 	topic := q.client.Topic(topicID)
 	defer topic.Stop()
 
