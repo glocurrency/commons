@@ -21,8 +21,7 @@ func NewPubSubQ(client *pubsub.Client) *PubSubQ {
 }
 
 func (q *PubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) (*TaskInfo, error) {
-	topic := q.client.Topic(task.typename)
-	defer topic.Stop()
+	topicID := task.typename
 
 	message := &pubsub.Message{
 		Data:       task.payload,
@@ -39,13 +38,20 @@ func (q *PubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption)
 	for _, opt := range opts {
 		switch opt := opt.(type) {
 		case orderedKeyOption:
-			topic.EnableMessageOrdering = true
 			message.OrderingKey = string(opt)
 		case orderedByTaskNameOption:
-			topic.EnableMessageOrdering = true
 			message.OrderingKey = task.typename
+		case topicOption:
+			topicID = string(opt)
 		}
 	}
+
+	topic := q.client.Topic(topicID)
+	defer topic.Stop()
+
+	// no harm in always enabling this feature
+	// since it depends if OrderingKey is empty or not.
+	topic.EnableMessageOrdering = true
 
 	result := topic.Publish(ctx, message)
 

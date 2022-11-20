@@ -16,6 +16,7 @@ type PubSubOptionType int
 const (
 	OrderedKeyOpt PubSubOptionType = iota
 	OrderedByTaskNameOpt
+	TopicOpt
 )
 
 type CloudTasksOptionType int
@@ -60,6 +61,7 @@ type CloudTasksOption interface {
 // Internal option representations.
 type (
 	uniqueKeyOption         string
+	topicOption             string
 	orderedByTaskNameOption bool
 	orderedKeyOption        string
 	processAtOption         time.Time
@@ -91,6 +93,15 @@ func OrderedKey(key string) PubSubOption {
 func (key orderedKeyOption) String() string         { return fmt.Sprintf("OrderedKey(%q)", string(key)) }
 func (key orderedKeyOption) Type() PubSubOptionType { return OrderedKeyOpt }
 func (key orderedKeyOption) Value() interface{}     { return string(key) }
+
+// Topic returns an option to specify the unique key.
+func Topic(key string) PubSubOption {
+	return topicOption(key)
+}
+
+func (key topicOption) String() string         { return fmt.Sprintf("Topic(%q)", string(key)) }
+func (key topicOption) Type() PubSubOptionType { return TopicOpt }
+func (key topicOption) Value() interface{}     { return string(key) }
 
 // ProcessAt returns an option to specify when to process the given task.
 func ProcessAt(t time.Time) CloudTasksOption {
