@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://www.github.com/glocurrency/commons/compare/v0.13.0...v0.14.0) (2022-11-20)
+
+
+### Features
+
+* can specify topic for pubsub ([d3aa351](https://www.github.com/glocurrency/commons/commit/d3aa351321a56e4620aa2e2417d4c2850a35728c))
+
 ## [0.13.0](https://www.github.com/glocurrency/commons/compare/v0.12.0...v0.13.0) (2022-11-17)
 
 
