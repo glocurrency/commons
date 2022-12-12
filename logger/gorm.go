@@ -8,6 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 	glog "gorm.io/gorm/logger"
+	"gorm.io/gorm/utils"
 )
 
 // Inspired by: https://github.com/onrik/gorm-logrus/logger.go
@@ -31,19 +32,19 @@ func (l *GormLogger) LogMode(glog.LogLevel) glog.Interface {
 }
 
 func (l *GormLogger) Info(ctx context.Context, s string, args ...interface{}) {
-	l.Logger.WithContext(ctx).Infof(s, args)
+	l.Logger.WithContext(ctx).Infof(s, args...)
 }
 
 func (l *GormLogger) Warn(ctx context.Context, s string, args ...interface{}) {
-	l.Logger.WithContext(ctx).Warnf(s, args)
+	l.Logger.WithContext(ctx).Warnf(s, args...)
 }
 
 func (l *GormLogger) Error(ctx context.Context, s string, args ...interface{}) {
-	l.Logger.WithContext(ctx).Errorf(s, args)
+	l.Logger.WithContext(ctx).Errorf(s, args...)
 }
 
 func (l *GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (string, int64), err error) {
-	fields := logrus.Fields{}
+	fields := logrus.Fields{"file_with_line_num": utils.FileWithLineNum()}
 
 	sql, rows := fc()
 	if rows == -1 {
