@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.16.0](https://www.github.com/glocurrency/commons/compare/v0.15.0...v0.16.0) (2022-12-12)
+
+
+### Features
+
+* `GormLogger` ([bc77ade](https://www.github.com/glocurrency/commons/commit/bc77ade6e95e11011c8ce7db048def8b148d4d55))
+
+
+### Bug Fixes
+
+* add file with line num ([0f02281](https://www.github.com/glocurrency/commons/commit/0f022818d58ac16a931242ec4802aa115f6e6a56))
+
 ## [0.15.0](https://www.github.com/glocurrency/commons/compare/v0.14.0...v0.15.0) (2022-11-20)
 
 
