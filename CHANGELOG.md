@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.0](https://www.github.com/glocurrency/commons/compare/v0.16.0...v0.17.0) (2023-02-06)
+
+
+### Features
+
+* use options when sending cloud task ([f10c109](https://www.github.com/glocurrency/commons/commit/f10c109b6946abc24a9257670bb8a2fa83140133))
+
 ## [0.16.0](https://www.github.com/glocurrency/commons/compare/v0.15.0...v0.16.0) (2022-12-12)
 
 
