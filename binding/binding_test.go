@@ -56,3 +56,39 @@ func TestParseParamUUID(t *testing.T) {
 		})
 	}
 }
+
+func TestMustParseParamUUID(t *testing.T) {
+	tests := []struct {
+		name       string
+		paramName  string
+		paramValue string
+		wantOk     bool
+	}{
+		{"valid uuid", "id", uuid.NewString(), true},
+		{"invalid uuid", "id", "invalid", false},
+		{"invalid param name", "xyz", uuid.NewString(), false},
+	}
+
+	for i := range tests {
+		test := tests[i]
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+
+			req := httptest.NewRequest(http.MethodGet, "/"+test.paramValue, nil)
+
+			w := httptest.NewRecorder()
+
+			router := gin.New()
+			router.GET("/:id", func(ctx *gin.Context) {
+				got, ok := binding.MustParseParamUUID(ctx, test.paramName)
+				if test.wantOk {
+					assert.True(t, ok)
+					assert.Equal(t, test.paramValue, got.String())
+				} else {
+					assert.False(t, ok)
+				}
+			})
+			router.ServeHTTP(w, req)
+		})
+	}
+}
