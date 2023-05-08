@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.17.1](https://www.github.com/glocurrency/commons/compare/v0.17.0...v0.17.1) (2023-05-08)
+
+
+### Bug Fixes
+
+* update deps ([abc4357](https://www.github.com/glocurrency/commons/commit/abc43570834c85ba1bc8f363da70b8a450373448))
+* update go and google packages ([e0e24dc](https://www.github.com/glocurrency/commons/commit/e0e24dca4fb95cd7c45a65e226c39b39eed11145))
+
 ## [0.17.0](https://www.github.com/glocurrency/commons/compare/v0.16.0...v0.17.0) (2023-02-06)
 
 
