@@ -21,8 +21,7 @@
         "vscode": {
             "extensions": [
                 "golang.Go",
-                "wayou.vscode-todo-highlight",
-                "GitHub.copilot"
+                "wayou.vscode-todo-highlight"
             ]
         }
     }
