@@ -5,8 +5,11 @@ import (
 	"os"
 
 	"github.com/brokeyourbike/nrlogrus"
+	"github.com/glocurrency/commons/audit"
 	"github.com/sirupsen/logrus"
 )
+
+const AuditEventField = "audit_event"
 
 var logger *logrus.Logger
 
@@ -21,6 +24,15 @@ func Log() *logrus.Logger {
 	return logger
 }
 
-func WithContext(ctx context.Context) *logrus.Entry {
-	return logger.WithContext(ctx)
+func WithContext(ctx context.Context) *Entry {
+	entry := &Entry{logger.WithContext(ctx)}
+	return entry
+}
+
+type Entry struct {
+	*logrus.Entry
+}
+
+func (e *Entry) WithAuditEvent(event *audit.BasicEvent) *Entry {
+	return &Entry{e.WithField(AuditEventField, event)}
 }
