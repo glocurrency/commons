@@ -7,7 +7,6 @@ import (
 	"github.com/glocurrency/commons/audit"
 	"github.com/glocurrency/commons/logger"
 	"github.com/google/uuid"
-	"github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/assert"
 )
@@ -33,7 +32,7 @@ func TestWithContext(t *testing.T) {
 	ctx := context.TODO()
 
 	e := logger.WithContext(ctx)
-	assert.IsType(t, &logrus.Entry{}, e)
+	assert.IsType(t, &logger.Entry{}, e)
 	assert.Same(t, ctx, e.Context)
 }
 
