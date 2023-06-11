@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://www.github.com/glocurrency/commons/compare/v0.17.2...v0.18.0) (2023-06-11)
+
+
+### Features
+
+* audit event log ([7084245](https://www.github.com/glocurrency/commons/commit/70842456b8a5694912ff514e09fb7a6cfaeece16))
+
 ### [0.17.2](https://www.github.com/glocurrency/commons/compare/v0.17.1...v0.17.2) (2023-05-18)
 
 
