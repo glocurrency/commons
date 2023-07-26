@@ -13,8 +13,8 @@ import (
 
 type mockTarget struct{ ID uuid.UUID }
 
-func (m mockTarget) GetID() uuid.UUID {
-	return m.ID
+func (m mockTarget) GetID() string {
+	return m.ID.String()
 }
 
 func (m mockTarget) GetAuditTargetType() audit.TargetType {
