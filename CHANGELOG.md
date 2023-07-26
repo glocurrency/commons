@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.18.1](https://www.github.com/glocurrency/commons/compare/v0.18.0...v0.18.1) (2023-07-26)
+
+
+### Bug Fixes
+
+* ! forgot to make it breaking ([b7f0235](https://www.github.com/glocurrency/commons/commit/b7f023515ff31d775572e3a5429be0e30e7e6c99))
+* use string ([829cd14](https://www.github.com/glocurrency/commons/commit/829cd14ca275bc84eed739821ed8a359876e01f2))
+
 ## [0.18.0](https://www.github.com/glocurrency/commons/compare/v0.17.2...v0.18.0) (2023-06-11)
 
 
