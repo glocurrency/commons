@@ -1,13 +1,17 @@
 package audit
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/google/uuid"
+)
 
 type BasicEvent struct {
 	EventType   Type
 	TargetType  TargetType
-	TargetID    string
+	TargetID    uuid.UUID
 	ActorType   ActorType
-	ActorID     string
+	ActorID     uuid.NullUUID
 	PrevPayload json.RawMessage
 	Payload     json.RawMessage
 }
@@ -32,15 +36,15 @@ type EventOption interface {
 }
 
 type withActorID struct {
-	actorID string
+	actorID uuid.NullUUID
 }
 
 func (w withActorID) Apply(e *BasicEvent) {
 	e.ActorID = w.actorID
 }
 
-func WithActorID(id string) EventOption {
-	return withActorID{actorID: id}
+func WithActorID(id uuid.UUID) EventOption {
+	return withActorID{actorID: uuid.NullUUID{UUID: id, Valid: true}}
 }
 
 type withPrevPayload struct{ payload json.RawMessage }
