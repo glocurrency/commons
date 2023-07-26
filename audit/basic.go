@@ -1,8 +1,6 @@
 package audit
 
-import (
-	"encoding/json"
-)
+import "encoding/json"
 
 type BasicEvent struct {
 	EventType   Type
