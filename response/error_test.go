@@ -35,4 +35,9 @@ func TestErrResponse(t *testing.T) {
 	code, resp = response.NewErrResponseValidationErrors("message", errors)
 	assert.Equal(t, http.StatusBadRequest, code)
 	assert.Equal(t, response.ErrResponse{Code: code, Message: "message", Errors: errors}, resp)
+
+	assert.True(t, resp.HasErrorField("key"))
+	assert.True(t, resp.HasErrorFields([]string{"key"}))
+	assert.False(t, resp.HasErrorField("foo"))
+	assert.False(t, resp.HasErrorFields([]string{"foo"}))
 }

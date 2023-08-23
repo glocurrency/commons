@@ -12,6 +12,20 @@ type ErrResponse struct {
 	Errors map[string]string `json:"errors,omitempty"`
 }
 
+func (e ErrResponse) HasErrorField(errorField string) bool {
+	_, ok := e.Errors[errorField]
+	return ok
+}
+
+func (e ErrResponse) HasErrorFields(errorFields []string) bool {
+	for _, f := range errorFields {
+		if _, ok := e.Errors[f]; !ok {
+			return false
+		}
+	}
+	return true
+}
+
 func NewErrResponse(e error) (int, ErrResponse) {
 	return http.StatusInternalServerError, ErrResponse{
 		Code:    http.StatusInternalServerError,
