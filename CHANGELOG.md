@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.19.0](https://www.github.com/glocurrency/commons/compare/v0.18.0...v0.19.0) (2023-08-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* revert string
+
+### Features
+
+* can check if we have errors ([958f70a](https://www.github.com/glocurrency/commons/commit/958f70a1d3b93638c0126f1ec60ba31caa4ca4bc))
+
+
+### Bug Fixes
+
+* ! forgot to make it breaking ([b7f0235](https://www.github.com/glocurrency/commons/commit/b7f023515ff31d775572e3a5429be0e30e7e6c99))
+* revert string ([8d58cde](https://www.github.com/glocurrency/commons/commit/8d58cde00b92d67995cc3de7656285fee2ad4683))
+* update deps ([d953913](https://www.github.com/glocurrency/commons/commit/d95391354d473b12c2b43c158317475cd9c32169))
+* use string ([829cd14](https://www.github.com/glocurrency/commons/commit/829cd14ca275bc84eed739821ed8a359876e01f2))
+
 ## [0.18.0](https://www.github.com/glocurrency/commons/compare/v0.17.2...v0.18.0) (2023-06-11)
 
 
