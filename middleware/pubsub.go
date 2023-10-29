@@ -15,15 +15,15 @@ type Locker interface {
 	TryToLock(ctx context.Context, key string) error
 }
 
-type PubSubCtx struct {
+type pubSubCtx struct {
 	locker Locker
 }
 
-func NewPubSubCtx(l Locker) *PubSubCtx {
-	return &PubSubCtx{locker: l}
+func NewPubSubCtx(l Locker) *pubSubCtx {
+	return &pubSubCtx{locker: l}
 }
 
-func (m *PubSubCtx) Middleware() gin.HandlerFunc {
+func (m *pubSubCtx) Middleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var msg q.PubSubMessage
 		if err := ctx.ShouldBindJSON(&msg); err != nil {
