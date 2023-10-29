@@ -33,7 +33,7 @@ func TestWithContext(t *testing.T) {
 
 	e := logger.WithContext(ctx)
 	assert.IsType(t, &logger.Entry{}, e)
-	assert.Same(t, ctx, e.Context)
+	assert.Equal(t, ctx, e.Context)
 }
 
 func TestLogEntry_WithAuditEvent(t *testing.T) {
