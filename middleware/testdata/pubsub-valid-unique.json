@@ -1,0 +1,10 @@
+{
+    "message": {
+        "messageId": "158b5c5d-ce6b-4020-b822-ceb0e43b754a",
+        "publishTime": "2023-07-09T17:49:48.087822341Z",
+        "attributes": {
+            "uniqueKey": "unique-456"
+        }
+    },
+    "subscription": "sub-123"
+}
