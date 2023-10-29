@@ -1,10 +1,11 @@
 module github.com/glocurrency/commons
 
-go 1.19
+go 1.21.1
 
 require (
 	cloud.google.com/go/cloudtasks v1.12.3
 	cloud.google.com/go/pubsub v1.33.0
+	github.com/brokeyourbike/gin-firebase-middleware v0.3.0
 	github.com/brokeyourbike/nrlogrus v0.1.3
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
