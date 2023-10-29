@@ -2,24 +2,16 @@ package response
 
 import "net/http"
 
-type SingleResponse[T any] struct {
+type Response[T any] struct {
 	Data T `json:"data"`
 }
 
-func NewSingleResponse[T any](model T) (int, SingleResponse[T]) {
-	return http.StatusOK, SingleResponse[T]{Data: model}
+func NewResponse[T any](model T) (int, Response[T]) {
+	return http.StatusOK, Response[T]{Data: model}
 }
 
-func NewSingleResponseCreated[T any](model T) (int, SingleResponse[T]) {
-	return http.StatusCreated, SingleResponse[T]{Data: model}
-}
-
-type ManyResponse[T any] struct {
-	Data []T `json:"data"`
-}
-
-func NewManyResponse[T any](models []T) (int, ManyResponse[T]) {
-	return http.StatusOK, ManyResponse[T]{Data: models}
+func NewResponseCreated[T any](model T) (int, Response[T]) {
+	return http.StatusCreated, Response[T]{Data: model}
 }
 
 type ManyResponsePaginated[T any] struct {
