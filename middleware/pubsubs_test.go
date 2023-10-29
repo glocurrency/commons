@@ -81,7 +81,7 @@ func TestPubSubCtx(t *testing.T) {
 
 			w := httptest.NewRecorder()
 			router := gin.New()
-			router.Use(m.Middleware())
+			router.Use(m.RequireValidMessage())
 			router.POST("/", func(ctx *gin.Context) {
 				msg := middleware.MustGetMessageFromContext(ctx)
 				assert.NotNil(t, msg)

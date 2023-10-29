@@ -8,9 +8,9 @@ import (
 	"github.com/glocurrency/commons/logger"
 )
 
-// ServiceAccount returns a middleware that checks if the request is coming from a service account
+// RequireIfServiceAccount returns a middleware that checks if the request is coming from a service account
 // and if the user ID is the same as the one provided.
-func ServiceAccount(userID string) gin.HandlerFunc {
+func RequireIfServiceAccount(userID string) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		userInfo := ginfirebasemw.GetUserInfo(ctx)
 

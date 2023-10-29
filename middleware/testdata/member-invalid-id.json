@@ -1,0 +1,11 @@
+{
+    "name": "John Doe",
+    "iss": "https://securetoken.google.com/example-corp",
+    "aud": "example-corp",
+    "auth_time": 1693160332,
+    "user_id": "12345678900000000000",
+    "sub": "12345678900000000000",
+    "iat": 1693160332,
+    "exp": 1693163932,
+    "email": "john@doe.com"
+}

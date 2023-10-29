@@ -9,7 +9,7 @@ import (
 	"github.com/glocurrency/commons/q"
 )
 
-const PubSubMessageCtx = "pubSubMessageCtx"
+const PubSubMessageCtxKey = "pubSubMessageCtx"
 
 type Locker interface {
 	TryToLock(ctx context.Context, key string) error
@@ -23,7 +23,7 @@ func NewPubSubCtx(l Locker) *pubSubCtx {
 	return &pubSubCtx{locker: l}
 }
 
-func (m *pubSubCtx) Middleware() gin.HandlerFunc {
+func (m *pubSubCtx) RequireValidMessage() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var msg q.PubSubMessage
 		if err := ctx.ShouldBindJSON(&msg); err != nil {
@@ -46,13 +46,13 @@ func (m *pubSubCtx) Middleware() gin.HandlerFunc {
 			}
 		}
 
-		ctx.Set(PubSubMessageCtx, msg)
+		ctx.Set(PubSubMessageCtxKey, msg)
 		ctx.Next()
 	}
 }
 
 // MustGetMessageFromContext returns the PubSub message from the context.
 func MustGetMessageFromContext(ctx *gin.Context) q.PubSubMessage {
-	msg := ctx.MustGet(PubSubMessageCtx).(q.PubSubMessage)
+	msg := ctx.MustGet(PubSubMessageCtxKey).(q.PubSubMessage)
 	return msg
 }
