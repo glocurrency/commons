@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.20.1](https://www.github.com/glocurrency/commons/compare/v0.20.0...v0.20.1) (2023-12-21)
+
+
+### Bug Fixes
+
+* read body twice ([c148234](https://www.github.com/glocurrency/commons/commit/c148234eb75329e8f012ebbbe854c6c4279e9d16))
+
 ## [0.20.0](https://www.github.com/glocurrency/commons/compare/v0.19.0...v0.20.0) (2023-10-29)
 
 
