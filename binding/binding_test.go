@@ -19,6 +19,7 @@ import (
 	"github.com/go-playground/validator/v10/translations/en"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestMain(m *testing.M) {
@@ -131,6 +132,27 @@ func TestMustDecodeBody_CanDecode(t *testing.T) {
 			router.ServeHTTP(w, req)
 		})
 	}
+}
+
+func TestMustDecodeBody_CanDecodeTwice(t *testing.T) {
+	type testStruct struct {
+		Name string `json:"name" binding:"required"`
+	}
+
+	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(`{"name": "John"}`))
+	w := httptest.NewRecorder()
+
+	router := gin.New()
+	router.POST("/", func(ctx *gin.Context) {
+		var got1 testStruct
+		require.True(t, binding.MustDecodeBody(ctx, &got1))
+		require.Equal(t, "John", got1.Name)
+
+		var got2 testStruct
+		require.True(t, binding.MustDecodeBody(ctx, &got2))
+		require.Equal(t, "John", got1.Name)
+	})
+	router.ServeHTTP(w, req)
 }
 
 func TestMustDecodeBody_CanTranslate(t *testing.T) {

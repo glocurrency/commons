@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 	"github.com/glocurrency/commons/response"
 	"github.com/glocurrency/commons/translator"
 	"github.com/go-playground/validator/v10"
@@ -35,7 +36,7 @@ func MustParseParamUUID(ctx *gin.Context, name string) (uuid.UUID, bool) {
 // DecodeBody decodes the request body.
 // If it fails it will abort the request with an error response.
 func MustDecodeBody(ctx *gin.Context, v interface{}) bool {
-	if err := ctx.ShouldBindJSON(v); err != nil {
+	if err := ctx.ShouldBindBodyWith(v, binding.JSON); err != nil {
 		if errs, ok := err.(validator.ValidationErrors); ok {
 			formattedErrors := make(map[string]string)
 
