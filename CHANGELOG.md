@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://www.github.com/glocurrency/commons/compare/v0.20.1...v0.21.0) (2024-01-03)
+
+
+### Features
+
+* mysql ([9135088](https://www.github.com/glocurrency/commons/commit/9135088d9b1e63eceb093ba0da1d64f5443a69c3))
+
 ### [0.20.1](https://www.github.com/glocurrency/commons/compare/v0.20.0...v0.20.1) (2023-12-21)
 
 
