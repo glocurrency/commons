@@ -24,10 +24,10 @@ func NewOrm(dsn string) (*gorm.DB, error) {
 
 func Migrate(orm *gorm.DB, dst ...interface{}) error {
 	orm = orm.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci")
-	return orm.AutoMigrate(dst)
+	return orm.AutoMigrate(dst...)
 }
 
 func Drop(orm *gorm.DB, dst ...interface{}) error {
 	mig := orm.Migrator()
-	return mig.DropTable(dst)
+	return mig.DropTable(dst...)
 }
