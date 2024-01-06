@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.21.2](https://www.github.com/glocurrency/commons/compare/v0.21.1...v0.21.2) (2024-01-06)
+
+
+### Bug Fixes
+
+* deps ([6d68aca](https://www.github.com/glocurrency/commons/commit/6d68aca4b0057c7dbf70f6dc41fa38ad8fe47215))
+
 ### [0.21.1](https://www.github.com/glocurrency/commons/compare/v0.21.0...v0.21.1) (2024-01-03)
 
 
