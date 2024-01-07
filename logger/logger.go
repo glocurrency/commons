@@ -36,3 +36,7 @@ type Entry struct {
 func (e *Entry) WithAuditEvent(event *audit.BasicEvent) *Entry {
 	return &Entry{e.WithField(AuditEventField, event)}
 }
+
+func (e *Entry) PushWithAuditEvent(event *audit.BasicEvent) {
+	Entry{e.WithField(AuditEventField, event)}.Info(AuditEventField)
+}

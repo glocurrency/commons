@@ -9,6 +9,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 type mockTarget struct{ ID uuid.UUID }
@@ -45,10 +46,12 @@ func TestLogEntry_WithAuditEvent(t *testing.T) {
 		"actor-type",
 		audit.WithPayload(target),
 	)
-	assert.NotNil(t, event)
+	require.NotNil(t, event)
 
 	hook := test.NewLocal(logger.Log())
 
-	logger.WithContext(context.Background()).WithAuditEvent(event).Info("test")
-	assert.Len(t, hook.Entries, 1)
+	logger.WithContext(context.TODO()).WithAuditEvent(event).Info("test")
+	logger.WithContext(context.TODO()).PushWithAuditEvent(event)
+
+	assert.Len(t, hook.Entries, 2)
 }
