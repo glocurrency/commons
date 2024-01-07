@@ -19,7 +19,7 @@ jobs:
         go-version-file: 'go.mod'
     - uses: brokeyourbike/go-mockery-action@v0.1
       with:
-        mockery-version: '2.36.0'
+        mockery-version: '2.38.0'
     - run: mockery --all --inpackage --quiet --testonly
     - run: go build -v ./...
     - run: go test -race -covermode=atomic -coverprofile=coverage.out -v ./...
