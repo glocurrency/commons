@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.24.0](https://www.github.com/glocurrency/commons/compare/v0.23.0...v0.24.0) (2024-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* do not use types for event
+
+### Bug Fixes
+
+* do not use types for event ([aaef26a](https://www.github.com/glocurrency/commons/commit/aaef26aff5d3c0b906757794908f54a442c6ae7e))
+
 ## [0.23.0](https://www.github.com/glocurrency/commons/compare/v0.22.0...v0.23.0) (2024-01-07)
 
 
