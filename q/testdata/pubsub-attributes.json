@@ -1,0 +1,16 @@
+{
+    "message": {
+        "data": "eyJOYW1lIjoiSm9obiJ9",
+        "messageId": "12345",
+        "message_id": "12345",
+        "orderingKey": "key123",
+        "publishTime": "2022-11-15T14:38:33.816Z",
+        "publish_time": "2022-11-15T14:38:33.816Z",
+        "attributes": {
+            "uniqueKey": "u",
+            "nameKey": "n",
+            "groupKey": "g"
+        }
+    },
+    "subscription": "projects/example/subscriptions/test"
+}
