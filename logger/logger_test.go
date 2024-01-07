@@ -6,21 +6,10 @@ import (
 
 	"github.com/glocurrency/commons/audit"
 	"github.com/glocurrency/commons/logger"
-	"github.com/google/uuid"
 	"github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
-
-type mockTarget struct{ ID uuid.UUID }
-
-func (m mockTarget) GetID() uuid.UUID {
-	return m.ID
-}
-
-func (m mockTarget) GetAuditTargetType() audit.TargetType {
-	return "mock-target"
-}
 
 func TestReturnSameInstanceOfLog(t *testing.T) {
 	logger1 := logger.Log()
@@ -38,13 +27,10 @@ func TestWithContext(t *testing.T) {
 }
 
 func TestLogEntry_WithAuditEvent(t *testing.T) {
-	target := mockTarget{ID: uuid.New()}
-
 	event := audit.NewBasicEvent(
 		"audit-type",
-		target,
+		"target-type",
 		"actor-type",
-		audit.WithPayload(target),
 	)
 	require.NotNil(t, event)
 

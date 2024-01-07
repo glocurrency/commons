@@ -7,16 +7,30 @@ import (
 )
 
 type BasicEvent struct {
-	EventType   Type
-	ActorType   ActorType
+	EventType   string
+	ActorType   string
 	ActorID     uuid.NullUUID
-	TargetType  TargetType
+	TargetType  string
 	TargetID    uuid.NullUUID
 	PrevPayload json.RawMessage
 	Payload     json.RawMessage
 }
 
-func NewBasicEvent(event Type, target Target, actorType ActorType, opts ...EventOption) *BasicEvent {
+func NewBasicEvent(event string, targetType string, actorType string, opts ...EventOption) *BasicEvent {
+	be := &BasicEvent{
+		EventType:  event,
+		TargetType: targetType,
+		ActorType:  actorType,
+	}
+
+	for _, o := range opts {
+		o.Apply(be)
+	}
+
+	return be
+}
+
+func NewBasicEventWithTarget(event string, target Target, actorType string, opts ...EventOption) *BasicEvent {
 	be := &BasicEvent{
 		EventType:  event,
 		TargetID:   uuid.NullUUID{UUID: target.GetID(), Valid: true},
@@ -45,6 +59,18 @@ func (w withActorID) Apply(e *BasicEvent) {
 
 func WithActorID(id uuid.UUID) EventOption {
 	return withActorID{actorID: uuid.NullUUID{UUID: id, Valid: true}}
+}
+
+type withTargetID struct {
+	targetID uuid.NullUUID
+}
+
+func (w withTargetID) Apply(e *BasicEvent) {
+	e.TargetID = w.targetID
+}
+
+func WithTargetID(id uuid.UUID) EventOption {
+	return withTargetID{targetID: uuid.NullUUID{UUID: id, Valid: true}}
 }
 
 type withPrevPayload struct{ payload json.RawMessage }
