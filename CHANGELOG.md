@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.22.0](https://www.github.com/glocurrency/commons/compare/v0.21.1...v0.22.0) (2024-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove message i
+* structs are private
+
+### Bug Fixes
+
+* deps ([6d68aca](https://www.github.com/glocurrency/commons/commit/6d68aca4b0057c7dbf70f6dc41fa38ad8fe47215))
+* remove message i ([1114c1a](https://www.github.com/glocurrency/commons/commit/1114c1a387a1509cd4f56b9f5e0a35ca86ebc644))
+* structs are private ([3bdde60](https://www.github.com/glocurrency/commons/commit/3bdde607b07b4add644fec45dace3873fd1ba3eb))
+
 ### [0.21.1](https://www.github.com/glocurrency/commons/compare/v0.21.0...v0.21.1) (2024-01-03)
 
 
