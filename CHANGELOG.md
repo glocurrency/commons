@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.0](https://www.github.com/glocurrency/commons/compare/v0.24.0...v0.25.0) (2024-01-07)
+
+
+### Features
+
+* actors ([efb9b2e](https://www.github.com/glocurrency/commons/commit/efb9b2e039e98bf61da1899665e932737de704df))
+
 ## [0.24.0](https://www.github.com/glocurrency/commons/compare/v0.23.0...v0.24.0) (2024-01-07)
 
 
