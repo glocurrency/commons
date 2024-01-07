@@ -18,21 +18,21 @@ type Config interface {
 	GetServiceAccountEmail() string
 }
 
-type ICloudTasksQ interface {
+type CloudTasksQ interface {
 	// Enqueue enqueues a task to the ClousTasks queue.
 	Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (*TaskInfo, error)
 }
 
-type CloudTasksQ struct {
+type cloudTasksQ struct {
 	cfg    Config
 	client *cloudtasks.Client
 }
 
-func NewCloudTasksQ(cfg Config, client *cloudtasks.Client) *CloudTasksQ {
-	return &CloudTasksQ{cfg: cfg, client: client}
+func NewCloudTasksQ(cfg Config, client *cloudtasks.Client) *cloudTasksQ {
+	return &cloudTasksQ{cfg: cfg, client: client}
 }
 
-func (q *CloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (*TaskInfo, error) {
+func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (*TaskInfo, error) {
 	queueID := task.typename
 	uniqueKey := ""
 

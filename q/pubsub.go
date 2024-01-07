@@ -7,20 +7,20 @@ import (
 	"cloud.google.com/go/pubsub"
 )
 
-type IPubSubQ interface {
+type PubSubQ interface {
 	// Enqueue enqueues a task to the Pub/Sub queue.
 	Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) (*TaskInfo, error)
 }
 
-type PubSubQ struct {
+type pubSubQ struct {
 	client *pubsub.Client
 }
 
-func NewPubSubQ(client *pubsub.Client) *PubSubQ {
-	return &PubSubQ{client: client}
+func NewPubSubQ(client *pubsub.Client) *pubSubQ {
+	return &pubSubQ{client: client}
 }
 
-func (q *PubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) (*TaskInfo, error) {
+func (q *pubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) (*TaskInfo, error) {
 	topicID := task.typename
 
 	message := &pubsub.Message{

@@ -9,22 +9,22 @@ import (
 	"google.golang.org/api/iamcredentials/v1"
 )
 
-type IClient interface {
+type Client interface {
 	// GenerateJWT generates a JWT for the given service account
 	GenerateJWT(serviceAccount string, expiry int64) (string, error)
 	// AuthenticateRequest authenticates the given request for the given service account
 	AuthenticateRequest(req *http.Request, serviceAccount string, expiry int64) error
 }
 
-type Client struct {
+type client struct {
 	iamCredsClient *iamcredentials.Service
 }
 
-func NewClient(iamCredsClient *iamcredentials.Service) *Client {
-	return &Client{iamCredsClient: iamCredsClient}
+func NewClient(iamCredsClient *iamcredentials.Service) *client {
+	return &client{iamCredsClient: iamCredsClient}
 }
 
-func (c *Client) GenerateJWT(serviceAccount string, expiry int64) (string, error) {
+func (c *client) GenerateJWT(serviceAccount string, expiry int64) (string, error) {
 	now := time.Now().Unix()
 
 	claims := ClaimSet{
@@ -53,7 +53,7 @@ func (c *Client) GenerateJWT(serviceAccount string, expiry int64) (string, error
 	return resp.SignedJwt, nil
 }
 
-func (c *Client) AuthenticateRequest(req *http.Request, serviceAccount string) error {
+func (c *client) AuthenticateRequest(req *http.Request, serviceAccount string) error {
 	jwt, err := c.GenerateJWT(serviceAccount, 3600)
 	if err != nil {
 		return fmt.Errorf("error generating jwt: %w", err)
