@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.22.1](https://www.github.com/glocurrency/commons/compare/v0.22.0...v0.22.1) (2024-01-07)
+
+
+### Bug Fixes
+
+* target type can be null ([769cb39](https://www.github.com/glocurrency/commons/commit/769cb398f4fd7c0bb0e476d8e903ae15e68451f9))
+
 ## [0.22.0](https://www.github.com/glocurrency/commons/compare/v0.21.1...v0.22.0) (2024-01-07)
 
 
