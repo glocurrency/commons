@@ -8,20 +8,20 @@ import (
 
 type BasicEvent struct {
 	EventType   Type
-	TargetType  TargetType
-	TargetID    uuid.UUID
 	ActorType   ActorType
 	ActorID     uuid.NullUUID
+	TargetType  TargetType
+	TargetID    uuid.NullUUID
 	PrevPayload json.RawMessage
 	Payload     json.RawMessage
 }
 
-func NewBasicEvent(event Type, target Target, actor ActorType, opts ...EventOption) *BasicEvent {
+func NewBasicEvent(event Type, target Target, actorType ActorType, opts ...EventOption) *BasicEvent {
 	be := &BasicEvent{
 		EventType:  event,
-		TargetID:   target.GetID(),
+		TargetID:   uuid.NullUUID{UUID: target.GetID(), Valid: true},
 		TargetType: target.GetAuditTargetType(),
-		ActorType:  actor,
+		ActorType:  actorType,
 	}
 
 	for _, o := range opts {
