@@ -1,24 +1,25 @@
 package q_test
 
 import (
+	_ "embed"
 	"encoding/json"
-	"os"
 	"testing"
 
 	"github.com/glocurrency/commons/q"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
+
+//go:embed testdata/pubsub.json
+var pubsubMsg []byte
+
+//go:embed testdata/pubsub-order.json
+var pubsubOrderMsg []byte
 
 func TestPubSubMessage(t *testing.T) {
 	t.Parallel()
 
-	payload, err := os.ReadFile("testdata/pubsub.json")
-	require.NoError(t, err)
-
 	var msg q.PubSubMessage
-	err = json.Unmarshal(payload, &msg)
-	assert.NoError(t, err)
+	assert.NoError(t, json.Unmarshal(pubsubMsg, &msg))
 	assert.Equal(t, "12345", msg.Message.ID)
 	assert.Equal(t, "2022-11-15 14:38:33.816 +0000 UTC", msg.Message.PublishTime.String())
 }
@@ -26,11 +27,7 @@ func TestPubSubMessage(t *testing.T) {
 func TestPubSubMessageOrder(t *testing.T) {
 	t.Parallel()
 
-	payload, err := os.ReadFile("testdata/pubsub-order.json")
-	require.NoError(t, err)
-
 	var msg q.PubSubMessage
-	err = json.Unmarshal(payload, &msg)
-	assert.NoError(t, err)
+	assert.NoError(t, json.Unmarshal(pubsubOrderMsg, &msg))
 	assert.Equal(t, "key123", msg.Message.OrderingKey)
 }
