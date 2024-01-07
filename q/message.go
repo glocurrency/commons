@@ -6,11 +6,6 @@ import (
 	"time"
 )
 
-type Message interface {
-	GetUniqueKey() string
-	UnmarshalData(v interface{}) error
-}
-
 // uniqueKeyKey is the key used to store the unique ID in the message attributes.
 const uniqueKeyKey = "uniqueKey"
 
