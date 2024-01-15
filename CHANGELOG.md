@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0](https://www.github.com/glocurrency/commons/compare/v0.25.0...v0.26.0) (2024-01-15)
+
+
+### Features
+
+* & ([15ccef2](https://www.github.com/glocurrency/commons/commit/15ccef298005a0be927584bb524850f2e5190bcb))
+
 ## [0.25.0](https://www.github.com/glocurrency/commons/compare/v0.24.0...v0.25.0) (2024-01-07)
 
 
