@@ -18,7 +18,7 @@ func ValidateAlphaNumSpaceDash(fl validator.FieldLevel) bool {
 	return alphaNumericSpaceDashRegex.MatchString(fl.Field().String())
 }
 
-var bankSupportedRegex = regexp.MustCompile(`^[a-zA-Z0-9\/\-?:().,"+\s]+$`)
+var bankSupportedRegex = regexp.MustCompile(`^[a-zA-Z0-9\/\-?:().,&"+\s]+$`)
 
 func ValidateBankSupported(fl validator.FieldLevel) bool {
 	return bankSupportedRegex.MatchString(fl.Field().String())
