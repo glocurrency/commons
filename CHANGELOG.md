@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.27.0](https://www.github.com/glocurrency/commons/compare/v0.26.0...v0.27.0) (2024-02-18)
+
+
+### Features
+
+* auth middlewares ([0d2c802](https://www.github.com/glocurrency/commons/commit/0d2c802c6943827d292bb56ca4f7b23b0c417f30))
+
 ## [0.26.0](https://www.github.com/glocurrency/commons/compare/v0.25.0...v0.26.0) (2024-01-15)
 
 
