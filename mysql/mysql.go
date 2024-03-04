@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"database/sql"
 	"fmt"
 	"time"
 
@@ -9,6 +10,10 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
+
+type Tx interface {
+	Transaction(fc func(tx *gorm.DB) error, opts ...*sql.TxOptions) (err error)
+}
 
 func NewOrm(dsn string) (*gorm.DB, error) {
 	d := mysql.New(mysql.Config{DriverName: "nrmysql", DSN: dsn, DefaultStringSize: 256})
