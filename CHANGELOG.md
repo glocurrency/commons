@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.0](https://www.github.com/glocurrency/commons/compare/v0.28.0...v0.29.0) (2024-03-05)
+
+
+### Features
+
+* float ([1cec4bd](https://www.github.com/glocurrency/commons/commit/1cec4bdc75f2282fba4b5f7f1188020103fb248f))
+
 ## [0.28.0](https://www.github.com/glocurrency/commons/compare/v0.27.0...v0.28.0) (2024-03-04)
 
 
