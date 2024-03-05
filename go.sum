@@ -16,6 +16,8 @@ cloud.google.com/go/pubsub v1.33.0/go.mod h1:f+w71I33OMyxf9VpMVcZbnG5KSUkCOUHYpF
 cloud.google.com/go/storage v1.36.0 h1:P0mOkAcaJxhCTvAkMhxMfrTKiNcub4YmmPBtlhAyTr8=
 cloud.google.com/go/storage v1.36.0/go.mod h1:M6M/3V/D3KpzMTJyPOR/HU6n2Si5QdaXYEsng2xgOs8=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/Rhymond/go-money v1.0.10 h1:jaySwEIcS6cQELv1XiJSGqcicI93ln9RhHHa14zWpZc=
+github.com/Rhymond/go-money v1.0.10/go.mod h1:iHvCuIvitxu2JIlAlhF0g9jHqjRSr+rpdOs7Omqlupg=
 github.com/brokeyourbike/gin-firebase-middleware v0.3.0 h1:GigrX7fa88PkH7WcvCl7/zEd0CrWsEgb0Y2iVdMzT2k=
 github.com/brokeyourbike/gin-firebase-middleware v0.3.0/go.mod h1:cvntNRpOlgjfmx3B+NQ0BDKAOIKaFnlQtkL/HCIrieE=
 github.com/brokeyourbike/nrlogrus v0.1.3 h1:0cLQXrEeZOjIGbo2VNpTYdKeL5jPNruxukLw+BsieYg=

@@ -6,6 +6,7 @@ require (
 	cloud.google.com/go/cloudtasks v1.12.4
 	cloud.google.com/go/pubsub v1.33.0
 	cloud.google.com/go/storage v1.36.0
+	github.com/Rhymond/go-money v1.0.10
 	github.com/brokeyourbike/gin-firebase-middleware v0.3.0
 	github.com/brokeyourbike/nrlogrus v0.1.3
 	github.com/gabriel-vasile/mimetype v1.4.3
