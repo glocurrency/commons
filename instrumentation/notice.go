@@ -14,6 +14,11 @@ func NoticeError(ctx context.Context, err error, msg string, opts ...NoticeOptio
 	}
 	entry.WithError(err).Error(msg)
 
+	if hub := getHubFromContext(ctx); hub != nil {
+		hub.CaptureException(err)
+		return
+	}
+
 	sentry.CaptureException(err)
 }
 
