@@ -78,12 +78,6 @@ func AddBreadcrumb(ctx context.Context, category, msg string) {
 	}
 }
 
-// StartSpan starts a new span to describe an operation.
-func StartSpan(ctx context.Context, operation string) *sentry.Span {
-	span := sentry.StartSpan(ctx, operation)
-	return span
-}
-
 func setHubInContext(ctx context.Context, hub *sentry.Hub) context.Context {
 	switch c := ctx.(type) {
 	case *gin.Context:
