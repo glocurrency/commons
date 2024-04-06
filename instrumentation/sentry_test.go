@@ -2,6 +2,8 @@ package instrumentation_test
 
 import (
 	"context"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"sync"
 	"testing"
@@ -10,10 +12,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/glocurrency/commons/instrumentation"
 	"github.com/google/uuid"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func init() {
+	gin.SetMode(gin.ReleaseMode)
 	defer func() {
 		instrumentation.Recover(10 * time.Second)
 	}()
@@ -34,6 +38,9 @@ func TestInitFromEnv_Fail(t *testing.T) {
 }
 
 func TestMiddleware(t *testing.T) {
+	w := httptest.NewRecorder()
+	req := httptest.NewRequest(http.MethodGet, "/", nil)
+
 	app := gin.Default()
 	app.Use(instrumentation.NewMiddleware())
 
@@ -51,4 +58,7 @@ func TestMiddleware(t *testing.T) {
 		}(instrumentation.CopyCtx(ctx))
 		wg.Wait()
 	})
+
+	app.ServeHTTP(w, req)
+	assert.Equal(t, http.StatusOK, w.Code)
 }

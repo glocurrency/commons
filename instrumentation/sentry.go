@@ -42,42 +42,35 @@ func Recover(timeout time.Duration) {
 // which can be safely used in goroutine.
 func CopyCtx(ctx context.Context) context.Context {
 	if hub := sentry.CurrentHub(); hub != nil {
-		clonedHub := hub.Clone()
-
-		switch c := ctx.(type) {
-		case *gin.Context:
-			return sentry.SetHubOnContext(c.Copy(), clonedHub)
-		default:
-			return sentry.SetHubOnContext(ctx, clonedHub)
-		}
+		return setHubInContext(ctx, hub.Clone())
 	}
 	return ctx
 }
 
 // SetTag adds a tag to the current scope.
 func SetTag(ctx context.Context, key string, value string) {
-	if hub := sentry.GetHubFromContext(ctx); hub != nil {
+	if hub := getHubFromContext(ctx); hub != nil {
 		hub.Scope().SetTag(key, value)
 	}
 }
 
 // SetTags assigns multiple tags to the current scope.
 func SetTags(ctx context.Context, tags map[string]string) {
-	if hub := sentry.GetHubFromContext(ctx); hub != nil {
+	if hub := getHubFromContext(ctx); hub != nil {
 		hub.Scope().SetTags(tags)
 	}
 }
 
 // SetUser sets the user for the current scope.
 func SetUser(ctx context.Context, id uuid.UUID, email string) {
-	if hub := sentry.GetHubFromContext(ctx); hub != nil {
+	if hub := getHubFromContext(ctx); hub != nil {
 		hub.Scope().SetUser(sentry.User{ID: id.String(), Email: email})
 	}
 }
 
 // AddBreadcrumb adds new breadcrumb to the current scope.
 func AddBreadcrumb(ctx context.Context, category, msg string) {
-	if hub := sentry.GetHubFromContext(ctx); hub != nil {
+	if hub := getHubFromContext(ctx); hub != nil {
 		hub.Scope().AddBreadcrumb(&sentry.Breadcrumb{
 			Category: category,
 			Message:  msg,
@@ -89,4 +82,20 @@ func AddBreadcrumb(ctx context.Context, category, msg string) {
 func StartSpan(ctx context.Context, operation string) *sentry.Span {
 	span := sentry.StartSpan(ctx, operation)
 	return span
+}
+
+func setHubInContext(ctx context.Context, hub *sentry.Hub) context.Context {
+	switch c := ctx.(type) {
+	case *gin.Context:
+		return sentry.SetHubOnContext(c.Copy(), hub)
+	}
+	return sentry.SetHubOnContext(ctx, hub)
+}
+
+func getHubFromContext(ctx context.Context) *sentry.Hub {
+	switch c := ctx.(type) {
+	case *gin.Context:
+		return sentrygin.GetHubFromContext(c)
+	}
+	return sentry.GetHubFromContext(ctx)
 }
