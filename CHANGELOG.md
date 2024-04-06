@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.30.2](https://www.github.com/glocurrency/commons/compare/v0.30.1...v0.30.2) (2024-04-06)
+
+
+### Bug Fixes
+
+* capture in hub ([90f7e74](https://www.github.com/glocurrency/commons/commit/90f7e74937d7727a637fc49dbbaec6daaca52a9e))
+* use common func ([8045a06](https://www.github.com/glocurrency/commons/commit/8045a0692bec3f7f5c5e65689ff75dff16ee9825))
+
 ### [0.30.1](https://www.github.com/glocurrency/commons/compare/v0.30.0...v0.30.1) (2024-04-06)
 
 
