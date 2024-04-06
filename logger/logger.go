@@ -4,7 +4,6 @@ import (
 	"context"
 	"os"
 
-	"github.com/brokeyourbike/nrlogrus"
 	"github.com/glocurrency/commons/audit"
 	"github.com/sirupsen/logrus"
 )
@@ -17,7 +16,7 @@ func init() {
 	logger = logrus.New()
 	logger.SetOutput(os.Stdout)
 	logger.SetLevel(logrus.DebugLevel)
-	logger.SetFormatter(nrlogrus.NewFormatterFromEnvironment(&logrus.JSONFormatter{}))
+	logger.SetFormatter(&logrus.JSONFormatter{}) // TODO: add gcloud formatter. if we need it.
 }
 
 func Log() *logrus.Logger {
@@ -31,6 +30,10 @@ func WithContext(ctx context.Context) *Entry {
 
 type Entry struct {
 	*logrus.Entry
+}
+
+func (e *Entry) EWithFields(fields map[string]interface{}) *Entry {
+	return &Entry{e.WithFields(fields)}
 }
 
 func (e *Entry) WithAuditEvent(event *audit.BasicEvent) *Entry {

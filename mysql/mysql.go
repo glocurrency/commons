@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/glocurrency/commons/logger"
-	_ "github.com/newrelic/go-agent/v3/integrations/nrmysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -16,10 +15,11 @@ type Tx interface {
 }
 
 func NewOrm(dsn string) (*gorm.DB, error) {
-	d := mysql.New(mysql.Config{DriverName: "nrmysql", DSN: dsn, DefaultStringSize: 256})
+	dialector := mysql.New(mysql.Config{DSN: dsn, DefaultStringSize: 256})
+
 	cfg := &gorm.Config{Logger: logger.NewGormLogger(logger.Log(), 200*time.Millisecond, true)}
 
-	orm, err := gorm.Open(d, cfg)
+	orm, err := gorm.Open(dialector, cfg)
 	if err != nil {
 		return nil, fmt.Errorf("cannot open mysql session: %w", err)
 	}
