@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"cloud.google.com/go/storage"
-	"github.com/glocurrency/commons/monitoring"
 )
 
 type signer struct {
@@ -21,8 +20,6 @@ func NewSigner(client *storage.Client, bucket string) *signer {
 
 // GetSignedURL returns a signed URL
 func (g *signer) GetSignedURL(ctx context.Context, name string, expires time.Duration) (string, error) {
-	defer monitoring.StartSegment(ctx, "google:signer:GetSignedURL").End()
-
 	opts := &storage.SignedURLOptions{
 		Scheme:  storage.SigningSchemeV4,
 		Method:  "GET",

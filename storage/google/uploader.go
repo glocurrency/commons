@@ -8,7 +8,6 @@ import (
 
 	"cloud.google.com/go/storage"
 	"github.com/gabriel-vasile/mimetype"
-	"github.com/glocurrency/commons/monitoring"
 )
 
 type uploader struct {
@@ -23,8 +22,6 @@ func NewUploader(client *storage.Client, bucket string) *uploader {
 
 // Upload uploads a file to Google Cloud Storage
 func (g *uploader) Upload(ctx context.Context, name string, r io.ReadSeeker) error {
-	defer monitoring.StartSegment(ctx, "google:uploader:Upload").End()
-
 	ctx, cancel := context.WithTimeout(ctx, time.Second*10)
 	defer cancel()
 
