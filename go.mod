@@ -1,6 +1,6 @@
 module github.com/glocurrency/commons
 
-go 1.21.1
+go 1.22
 
 require (
 	cloud.google.com/go/cloudtasks v1.12.7

@@ -5,7 +5,7 @@ import (
 
 	ginfirebasemw "github.com/brokeyourbike/gin-firebase-middleware"
 	"github.com/gin-gonic/gin"
-	"github.com/glocurrency/commons/logger"
+	"github.com/glocurrency/commons/instrumentation"
 )
 
 // RequireIfServiceAccount returns a middleware that checks if the request is coming from a service account
@@ -21,11 +21,10 @@ func RequireIfServiceAccount(userID string) gin.HandlerFunc {
 		}
 
 		if userInfo.Sub != userID {
-			logger.WithContext(ctx).
-				WithField("want_id", userID).
-				WithField("have_id", userInfo.Sub).
-				Warn("service account id do not match")
-
+			instrumentation.NoticeWarning(ctx, "service account id do not match",
+				instrumentation.WithField("want_id", userID),
+				instrumentation.WithField("have_id", userInfo.Sub),
+			)
 			ctx.AbortWithStatus(http.StatusForbidden)
 			return
 		}

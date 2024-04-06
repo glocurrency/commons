@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/glocurrency/commons/instrumentation"
 	"github.com/glocurrency/commons/response"
 	"github.com/glocurrency/commons/translator"
 	"github.com/go-playground/validator/v10"
@@ -26,6 +27,7 @@ func ParseParamUUID(ctx *gin.Context, name string) (uuid.UUID, error) {
 func MustParseParamUUID(ctx *gin.Context, name string) (uuid.UUID, bool) {
 	id, err := ParseParamUUID(ctx, name)
 	if err != nil {
+		instrumentation.NoticeError(ctx, err, "cannot parse param", instrumentation.WithField("param_name", name))
 		ctx.AbortWithStatusJSON(response.NewErrResponseBadRequest(fmt.Sprintf("Invalid param %s", name)))
 		return id, false
 	}
@@ -46,10 +48,12 @@ func MustDecodeBody(ctx *gin.Context, v interface{}) bool {
 				}
 			}
 
+			instrumentation.NoticeError(ctx, err, "request body invalid", instrumentation.WithField("validation_errors", formattedErrors))
 			ctx.AbortWithStatusJSON(response.NewErrResponseValidationErrors("Request data invalid", formattedErrors))
 			return false
 		}
 
+		instrumentation.NoticeError(ctx, err, "request body invalid")
 		ctx.AbortWithStatusJSON(response.NewErrResponseBadRequest("Invalid request body"))
 		return false
 	}

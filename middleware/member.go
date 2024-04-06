@@ -5,7 +5,7 @@ import (
 
 	ginfirebasemw "github.com/brokeyourbike/gin-firebase-middleware"
 	"github.com/gin-gonic/gin"
-	"github.com/glocurrency/commons/logger"
+	"github.com/glocurrency/commons/instrumentation"
 	"github.com/glocurrency/commons/response"
 	"github.com/google/uuid"
 )
@@ -29,11 +29,8 @@ func (m *memberCtx) Require(permissions ...[]string) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id, err := uuid.Parse(ginfirebasemw.GetUserID(ctx))
 		if err != nil {
-			logger.WithContext(ctx).
-				WithError(err).
-				WithField("member_id", ginfirebasemw.GetUserID(ctx)).
-				Error("member id cannot be parsed")
-
+			instrumentation.NoticeError(ctx, err, "member id cannot be parsed",
+				instrumentation.WithField("member_id", ginfirebasemw.GetUserID(ctx)))
 			ctx.AbortWithStatusJSON(response.NewErrResponseBadRequest("Member ID not valid"))
 			return
 		}

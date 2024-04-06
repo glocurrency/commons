@@ -8,16 +8,16 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/glocurrency/commons/logger"
+	"github.com/glocurrency/commons/instrumentation"
 )
 
 // ServeWithTimeout is a wrapper around http.Server that gracefully shuts down
 // the server when a SIGINT or SIGTERM is received.
 func ServeWithTimeout(ctx context.Context, timeout time.Duration, srv *http.Server) {
 	go func() {
-		logger.WithContext(ctx).Debugf("starting HTTP server on %s", srv.Addr)
+		instrumentation.NoticeInfo(ctx, "starting server..", instrumentation.WithField("server_addr", srv.Addr))
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logger.WithContext(ctx).WithError(err).Fatal("failed to start server")
+			instrumentation.NoticeError(ctx, err, "failed to start server")
 		}
 	}()
 
@@ -25,14 +25,14 @@ func ServeWithTimeout(ctx context.Context, timeout time.Duration, srv *http.Serv
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 
 	<-quit
-	logger.WithContext(ctx).Debug("shutting down server...")
+	instrumentation.NoticeInfo(ctx, "shutting down server...")
 
 	ctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
 
 	if err := srv.Shutdown(ctx); err != nil {
-		logger.WithContext(ctx).Debug("server forced to shutdown: ", err)
+		instrumentation.NoticeError(ctx, err, "server forced to shutdown")
 	}
 
-	logger.WithContext(ctx).Println("server stopped")
+	instrumentation.NoticeInfo(ctx, "server stopped")
 }
