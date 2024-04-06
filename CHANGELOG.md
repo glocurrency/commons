@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.30.1](https://www.github.com/glocurrency/commons/compare/v0.30.0...v0.30.1) (2024-04-06)
+
+
+### Bug Fixes
+
+* get gin ctx ([830b2be](https://www.github.com/glocurrency/commons/commit/830b2bea4d97e8c33cad431e24b6fb0f1d3a4ddb))
+
 ## [0.30.0](https://www.github.com/glocurrency/commons/compare/v0.29.0...v0.30.0) (2024-04-06)
 
 
