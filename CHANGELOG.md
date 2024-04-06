@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.30.0](https://www.github.com/glocurrency/commons/compare/v0.29.0...v0.30.0) (2024-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* braking changes.
+
+### Features
+
+* instrumentation ([47652cd](https://www.github.com/glocurrency/commons/commit/47652cd1beb02b4c4c7d90e0d674552c5e1a963d))
+
+
+### Bug Fixes
+
+* remove new relic ([d559de1](https://www.github.com/glocurrency/commons/commit/d559de1f6e87930fea53f7c4df74660c8a291394))
+
+
+### Miscellaneous Chores
+
+* braking changes. ([08645ec](https://www.github.com/glocurrency/commons/commit/08645ec1e5824feeb3617013693809379eca3ed2))
+
 ## [0.29.0](https://www.github.com/glocurrency/commons/compare/v0.28.0...v0.29.0) (2024-03-05)
 
 
