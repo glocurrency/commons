@@ -8,10 +8,7 @@ import (
 )
 
 func NoticeError(ctx context.Context, err error, msg string, opts ...NoticeOption) {
-	entry := logger.WithContext(ctx)
-	for _, o := range opts {
-		o.Apply(entry)
-	}
+	entry := ApplyOptions(logger.WithContext(ctx), opts...)
 	entry.WithError(err).Error(msg)
 
 	if hub := getHubFromContext(ctx); hub != nil {
@@ -23,17 +20,11 @@ func NoticeError(ctx context.Context, err error, msg string, opts ...NoticeOptio
 }
 
 func NoticeWarning(ctx context.Context, msg string, opts ...NoticeOption) {
-	entry := logger.WithContext(ctx)
-	for _, o := range opts {
-		entry = o.Apply(entry)
-	}
+	entry := ApplyOptions(logger.WithContext(ctx), opts...)
 	entry.Warn(msg)
 }
 
 func NoticeInfo(ctx context.Context, msg string, opts ...NoticeOption) {
-	entry := logger.WithContext(ctx)
-	for _, o := range opts {
-		entry = o.Apply(entry)
-	}
+	entry := ApplyOptions(logger.WithContext(ctx), opts...)
 	entry.Info(msg)
 }

@@ -30,3 +30,10 @@ func (w withFields) Apply(entry *logger.Entry) *logger.Entry {
 func WithFields(fields map[string]interface{}) NoticeOption {
 	return withFields{fields: fields}
 }
+
+func ApplyOptions(entry *logger.Entry, opts ...NoticeOption) *logger.Entry {
+	for _, o := range opts {
+		entry = o.Apply(entry)
+	}
+	return entry
+}
