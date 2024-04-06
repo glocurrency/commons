@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.31.0](https://www.github.com/glocurrency/commons/compare/v0.30.2...v0.31.0) (2024-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove span
+
+### Bug Fixes
+
+* remove span ([3459c40](https://www.github.com/glocurrency/commons/commit/3459c40d088d7c55af4affb31c153454dc5246ba))
+
 ### [0.30.2](https://www.github.com/glocurrency/commons/compare/v0.30.1...v0.30.2) (2024-04-06)
 
 
