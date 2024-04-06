@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.31.1](https://www.github.com/glocurrency/commons/compare/v0.31.0...v0.31.1) (2024-04-06)
+
+
+### Bug Fixes
+
+* instrument internal methods ([a835ce7](https://www.github.com/glocurrency/commons/commit/a835ce7d501f9795700001589a887ca96b382224))
+
 ## [0.31.0](https://www.github.com/glocurrency/commons/compare/v0.30.2...v0.31.0) (2024-04-06)
 
 
