@@ -2,7 +2,6 @@ package logger
 
 import (
 	"context"
-	"os"
 
 	"github.com/glocurrency/commons/audit"
 	"github.com/sirupsen/logrus"
@@ -14,9 +13,9 @@ var logger *logrus.Logger
 
 func init() {
 	logger = logrus.New()
-	logger.SetOutput(os.Stdout)
+	logger.SetOutput(Writer{})
 	logger.SetLevel(logrus.DebugLevel)
-	logger.SetFormatter(&logrus.JSONFormatter{}) // TODO: add gcloud formatter. if we need it.
+	logger.SetFormatter(&logrus.JSONFormatter{})
 }
 
 func Log() *logrus.Logger {
