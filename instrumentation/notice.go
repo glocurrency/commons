@@ -7,6 +7,10 @@ import (
 	"github.com/glocurrency/commons/logger"
 )
 
+// TODO: depending on ctx, insert GCP related info.
+// sample: https://github.com/ncruces/go-gcp/blob/master/glog/glog.go
+// fields: https://cloud.google.com/logging/docs/structured-logging#special-payload-fields
+
 func NoticeError(ctx context.Context, err error, msg string, opts ...NoticeOption) {
 	entry := ApplyOptions(logger.WithContext(ctx), opts...)
 	entry.WithError(err).Error(msg)
