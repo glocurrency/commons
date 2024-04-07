@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.31.2](https://www.github.com/glocurrency/commons/compare/v0.31.1...v0.31.2) (2024-04-07)
+
+
+### Bug Fixes
+
+* trigger ([e4562c7](https://www.github.com/glocurrency/commons/commit/e4562c7bb233136e4ebacafc56e1b3f7d31f229e))
+
 ### [0.31.1](https://www.github.com/glocurrency/commons/compare/v0.31.0...v0.31.1) (2024-04-06)
 
 
