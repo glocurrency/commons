@@ -14,7 +14,7 @@ func TestEnqueue_Marshal(t *testing.T) {
 
 	ps := q.NewPubSubQ(&pubsub.Client{})
 
-	_, err := ps.Enqueue(context.TODO(), q.NewTask("test", cannotMarshall))
+	err := ps.Enqueue(context.TODO(), q.NewTask("test", cannotMarshall))
 	require.Error(t, err)
 	require.ErrorContains(t, err, "failed to marshal payload")
 }
