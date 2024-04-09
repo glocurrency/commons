@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.32.0](https://www.github.com/glocurrency/commons/compare/v0.31.2...v0.32.0) (2024-04-09)
+
+
+### Features
+
+* move marshalling to enqueue ([e20ce50](https://www.github.com/glocurrency/commons/commit/e20ce5011d367d2de706279cb0783ced7ed9e46d))
+
 ### [0.31.2](https://www.github.com/glocurrency/commons/compare/v0.31.1...v0.31.2) (2024-04-07)
 
 
