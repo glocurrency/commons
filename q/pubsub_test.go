@@ -17,4 +17,8 @@ func TestEnqueue_Marshal(t *testing.T) {
 	err := ps.Enqueue(context.TODO(), q.NewTask("test", cannotMarshall))
 	require.Error(t, err)
 	require.ErrorContains(t, err, "failed to marshal payload")
+
+	err = ps.Enqueue(context.TODO(), nil)
+	require.Error(t, err)
+	require.ErrorContains(t, err, "task is nil")
 }

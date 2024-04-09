@@ -31,6 +31,10 @@ func (q *pubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption)
 
 // Enqueue enqueues a task to the Pub/Sub queue, and returns info.
 func (q *pubSubQ) EnqueueWithInfo(ctx context.Context, task *Task, opts ...PubSubOption) (info *TaskInfo, err error) {
+	if task == nil {
+		return nil, fmt.Errorf("task is nil")
+	}
+
 	topicID := task.typename
 
 	var payload []byte
