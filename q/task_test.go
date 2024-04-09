@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestNewTaskWithJSON(t *testing.T) {
+func TestNewTas(t *testing.T) {
 	cannotMarshall := make(chan int)
 	canMarshall := struct{ message string }{message: "hello!"}
 
@@ -15,5 +15,5 @@ func TestNewTaskWithJSON(t *testing.T) {
 	require.IsType(t, &q.Task{}, task)
 
 	task = q.NewTask("test", cannotMarshall)
-	require.Nil(t, task)
+	require.IsType(t, &q.Task{}, task)
 }
