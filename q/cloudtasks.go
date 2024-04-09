@@ -3,6 +3,7 @@ package q
 import (
 	"context"
 	"crypto/sha256"
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -32,9 +33,19 @@ func NewCloudTasksQ(cfg Config, client *cloudtasks.Client) *cloudTasksQ {
 	return &cloudTasksQ{cfg: cfg, client: client}
 }
 
-func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (*TaskInfo, error) {
+func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (info *TaskInfo, err error) {
 	queueID := task.typename
 	uniqueKey := ""
+
+	var payload []byte
+
+	// marshall payload to JSON
+	if task.payload != nil {
+		payload, err = json.Marshal(task.payload)
+		if err != nil {
+			return nil, fmt.Errorf("failed to marshal payload: %w", err)
+		}
+	}
 
 	for _, opt := range task.opts {
 		switch opt := opt.(type) {
@@ -54,7 +65,7 @@ func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTask
 				HttpRequest: &cloudtaskspb.HttpRequest{
 					HttpMethod: cloudtaskspb.HttpMethod_POST,
 					Url:        fmt.Sprintf("%s/%s", q.cfg.GetBaseUrl(), queueID),
-					Body:       task.payload,
+					Body:       payload,
 					Headers:    map[string]string{"Content-Type": "application/json", nameKey: task.typename, groupKey: queueID},
 					AuthorizationHeader: &cloudtaskspb.HttpRequest_OidcToken{
 						OidcToken: &cloudtaskspb.OidcToken{

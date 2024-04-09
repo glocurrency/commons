@@ -2,6 +2,7 @@ package q
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 
 	"cloud.google.com/go/pubsub"
@@ -20,11 +21,21 @@ func NewPubSubQ(client *pubsub.Client) *pubSubQ {
 	return &pubSubQ{client: client}
 }
 
-func (q *pubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) (*TaskInfo, error) {
+func (q *pubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) (info *TaskInfo, err error) {
 	topicID := task.typename
 
+	var payload []byte
+
+	// marshall payload to JSON
+	if task.payload != nil {
+		payload, err = json.Marshal(task.payload)
+		if err != nil {
+			return nil, fmt.Errorf("failed to marshal payload: %w", err)
+		}
+	}
+
 	message := &pubsub.Message{
-		Data:       task.payload,
+		Data:       payload,
 		Attributes: map[string]string{nameKey: task.typename},
 	}
 

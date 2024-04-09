@@ -4,18 +4,16 @@ import (
 	"testing"
 
 	"github.com/glocurrency/commons/q"
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestNewTaskWithJSON(t *testing.T) {
 	cannotMarshall := make(chan int)
 	canMarshall := struct{ message string }{message: "hello!"}
 
-	task, err := q.NewTaskWithJSON("test", canMarshall)
-	assert.NoError(t, err)
-	assert.IsType(t, &q.Task{}, task)
+	task := q.NewTask("test", canMarshall)
+	require.IsType(t, &q.Task{}, task)
 
-	task, err = q.NewTaskWithJSON("test", cannotMarshall)
-	assert.Error(t, err)
-	assert.Nil(t, task)
+	task = q.NewTask("test", cannotMarshall)
+	require.Nil(t, task)
 }
