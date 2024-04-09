@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.32.1](https://www.github.com/glocurrency/commons/compare/v0.32.0...v0.32.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* simplify enqueue ([7e5128d](https://www.github.com/glocurrency/commons/commit/7e5128d546fe4010956ad3a64215bad0d288457d))
+
 ## [0.32.0](https://www.github.com/glocurrency/commons/compare/v0.31.2...v0.32.0) (2024-04-09)
 
 
