@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.34.0](https://www.github.com/glocurrency/commons/compare/v0.33.0...v0.34.0) (2024-04-10)
+
+
+### Features
+
+* pubsub router ([be5eba7](https://www.github.com/glocurrency/commons/commit/be5eba77500f5d553aa15b50568ea4f8942aa0f1))
+
+
+### Bug Fixes
+
+* handle nil task ([f606168](https://www.github.com/glocurrency/commons/commit/f606168c99eb3cd4758d76f653144188dfc86f51))
+
 ## [0.33.0](https://www.github.com/glocurrency/commons/compare/v0.32.0...v0.33.0) (2024-04-09)
 
 
