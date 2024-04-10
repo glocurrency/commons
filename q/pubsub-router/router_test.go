@@ -34,14 +34,14 @@ func TestRouting(t *testing.T) {
 		body       []byte
 		wantStatus int
 	}{
-		{"pubsub not found", "/abc", nil, http.StatusNotFound},
+		{"pubsub not found", "/api/abc", nil, http.StatusNotFound},
 		{"pubsub not found, name do not match route", "/abc", withNameE, http.StatusNotFound},
-		{"pubsub routed", "/abc", withNameD, http.StatusAccepted},
-		{"pubsub routed", "/abc?a=b", withNameD, http.StatusAccepted},
-		{"pubsub routed", "/abc/", withNameD, http.StatusAccepted},
-		{"pubsub routed", "/abc/?a=b", withNameD, http.StatusAccepted},
-		{"pubsub routed", "/abc", withNameDEF, http.StatusAccepted},
-		{"not pubpub", "/123/4", withNameD, http.StatusOK},
+		{"pubsub routed", "/api/abc", withNameD, http.StatusAccepted},
+		{"pubsub routed", "/api/abc?a=b", withNameD, http.StatusAccepted},
+		{"pubsub routed", "/api/abc/", withNameD, http.StatusAccepted},
+		{"pubsub routed", "/api/abc/?a=b", withNameD, http.StatusAccepted},
+		{"pubsub routed", "/api/abc", withNameDEF, http.StatusAccepted},
+		{"not pubpub", "/api/123/4", withNameD, http.StatusOK},
 	}
 
 	for i := range tests {
@@ -54,11 +54,13 @@ func TestRouting(t *testing.T) {
 
 			router := pubsubrouter.NewRouter(gin.New(), "/abc")
 
-			group1 := router.Group("/abc")
+			rootGroup := router.Group("/api")
+
+			group1 := rootGroup.Group("/abc/")
 			group1.POST("d", func(ctx *gin.Context) { ctx.Status(http.StatusAccepted) })
 			group1.POST("d-e-f", func(ctx *gin.Context) { ctx.Status(http.StatusAccepted) })
 
-			group2 := router.Group("/123")
+			group2 := rootGroup.Group("/123/")
 			group2.POST("4", func(ctx *gin.Context) { ctx.Status(http.StatusOK) })
 
 			router.ServeHTTP(w, req)
