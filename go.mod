@@ -7,7 +7,7 @@ require (
 	cloud.google.com/go/pubsub v1.37.0
 	cloud.google.com/go/storage v1.40.0
 	github.com/Rhymond/go-money v1.0.10
-	github.com/brokeyourbike/gin-firebase-middleware v0.3.0
+	github.com/brokeyourbike/gin-firebase-middleware v0.4.0
 	github.com/gabriel-vasile/mimetype v1.4.3
 	github.com/getsentry/sentry-go v0.27.0
 	github.com/gin-contrib/cors v1.7.1
@@ -58,7 +58,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
-	github.com/pelletier/go-toml/v2 v2.2.0 // indirect
+	github.com/pelletier/go-toml/v2 v2.2.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect

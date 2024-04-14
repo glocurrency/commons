@@ -22,6 +22,9 @@ var userEmailNotVerified []byte
 //go:embed testdata/user-second-factor-phone.json
 var userSecondFactorPhone []byte
 
+//go:embed testdata/user-no-email-apple.json
+var userNoEmailApple []byte
+
 func TestRequireEmailVerified(t *testing.T) {
 	tests := []struct {
 		name       string
@@ -36,6 +39,11 @@ func TestRequireEmailVerified(t *testing.T) {
 		{
 			"email verified",
 			userEmailVerified,
+			http.StatusOK,
+		},
+		{
+			"no email, apple.com",
+			userNoEmailApple,
 			http.StatusOK,
 		},
 	}

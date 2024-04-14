@@ -16,6 +16,11 @@ func RequireEmailVerified() gin.HandlerFunc {
 			return
 		}
 
+		if userInfo.Email == "" && userInfo.Firebase.SignInProvider != ginfirebasemw.ProviderPassword {
+			ctx.Next()
+			return
+		}
+
 		if !userInfo.EmailVerified {
 			ctx.AbortWithStatusJSON(response.NewErrResponseForbidden("Please verify your email"))
 			return
