@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.35.0](https://www.github.com/glocurrency/commons/compare/v0.34.0...v0.35.0) (2024-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* do now ask for email if we don't have it
+
+### Features
+
+* do now ask for email if we don't have it ([08dfa77](https://www.github.com/glocurrency/commons/commit/08dfa77a5e20b1f5a1754d8d2b7e507819970260))
+
 ## [0.34.0](https://www.github.com/glocurrency/commons/compare/v0.33.0...v0.34.0) (2024-04-10)
 
 
