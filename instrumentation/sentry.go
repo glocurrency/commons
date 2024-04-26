@@ -14,7 +14,10 @@ import (
 
 // InitFromEnv reads SENTRY_DSN and SENTRY_ENV from environment, and creates a new client.
 func InitFromEnv() error {
-	traceRate, _ := strconv.ParseFloat(os.Getenv("SENTRY_TRACERATE"), 64)
+	traceRate, err := strconv.ParseFloat(os.Getenv("SENTRY_TRACERATE"), 64)
+	if err != nil {
+		traceRate = 1.00
+	}
 
 	return sentry.Init(sentry.ClientOptions{
 		Dsn:                os.Getenv("SENTRY_DSN"),
