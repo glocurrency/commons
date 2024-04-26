@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.36.0](https://www.github.com/glocurrency/commons/compare/v0.35.1...v0.36.0) (2024-04-26)
+
+
+### Features
+
+* tracerate ([c68e55f](https://www.github.com/glocurrency/commons/commit/c68e55f34ce1b853e410e30da76b96642d6f1e9c))
+
+
+### Bug Fixes
+
+* tracerate 1.00 ([be5983d](https://www.github.com/glocurrency/commons/commit/be5983d50363f60a0c975f264fe94c2e9949c883))
+
 ### [0.35.1](https://www.github.com/glocurrency/commons/compare/v0.35.0...v0.35.1) (2024-04-14)
 
 
