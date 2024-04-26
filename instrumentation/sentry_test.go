@@ -30,6 +30,15 @@ func TestInitFromEnv(t *testing.T) {
 	require.NoError(t, instrumentation.InitFromEnv())
 }
 
+func TestInitFromEnvFull(t *testing.T) {
+	os.Setenv("SENTRY_DSN", "https://fake@12345.ingest.us.sentry.io/12345")
+	os.Setenv("SENTRY_ENV", "dev")
+	os.Setenv("SENTRY_TRACE", "true")
+	os.Setenv("SENTRY_TRACERATE", "0.1")
+
+	require.NoError(t, instrumentation.InitFromEnv())
+}
+
 func TestInitFromEnv_Fail(t *testing.T) {
 	os.Setenv("SENTRY_DSN", "not-a-dsn")
 	os.Setenv("SENTRY_ENV", "dev")

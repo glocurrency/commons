@@ -3,6 +3,7 @@ package instrumentation
 import (
 	"context"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/getsentry/sentry-go"
@@ -13,12 +14,15 @@ import (
 
 // InitFromEnv reads SENTRY_DSN and SENTRY_ENV from environment, and creates a new client.
 func InitFromEnv() error {
+	traceRate, _ := strconv.ParseFloat(os.Getenv("SENTRY_TRACERATE"), 64)
+
 	return sentry.Init(sentry.ClientOptions{
-		Dsn:              os.Getenv("SENTRY_DSN"),
-		Environment:      os.Getenv("SENTRY_ENV"),
-		EnableTracing:    true,
-		TracesSampleRate: 1.0,
-		AttachStacktrace: true,
+		Dsn:                os.Getenv("SENTRY_DSN"),
+		Environment:        os.Getenv("SENTRY_ENV"),
+		EnableTracing:      os.Getenv("SENTRY_TRACE") == "true",
+		TracesSampleRate:   traceRate,
+		AttachStacktrace:   true,
+		ProfilesSampleRate: 1.0,
 	})
 }
 
