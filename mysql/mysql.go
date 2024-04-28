@@ -36,8 +36,8 @@ func NewOrm(dsn string) (*gorm.DB, error) {
 }
 
 func Migrate(orm *gorm.DB, dst ...interface{}) error {
-	orm = orm.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci")
-	return orm.AutoMigrate(dst...)
+	return orm.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci").
+		AutoMigrate(dst...)
 }
 
 func Drop(orm *gorm.DB, dst ...interface{}) error {
