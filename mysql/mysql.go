@@ -1,7 +1,6 @@
 package mysql
 
 import (
-	"database/sql"
 	"fmt"
 	"time"
 
@@ -9,18 +8,6 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
-
-type Tx interface {
-	Transaction(fc func(tx *gorm.DB) error, opts ...*sql.TxOptions) (err error)
-}
-
-// MockTx is a test helper that implements Tx interface.
-// It executes SQL statements without wrapping them in transaction.
-type MockTx struct{}
-
-func (*MockTx) Transaction(fc func(tx *gorm.DB) error, opts ...*sql.TxOptions) (err error) {
-	return fc(&gorm.DB{})
-}
 
 func NewOrm(dsn string) (*gorm.DB, error) {
 	dialector := mysql.New(mysql.Config{DSN: dsn, DefaultStringSize: 256})
