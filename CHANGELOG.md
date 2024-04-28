@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.0](https://www.github.com/glocurrency/commons/compare/v0.37.0...v0.38.0) (2024-04-28)
+
+
+### Features
+
+* access props ([8c1542a](https://www.github.com/glocurrency/commons/commit/8c1542a7d8fcaf48fd5dc805c8e16a6c3d0bf68f))
+
 ## [0.37.0](https://www.github.com/glocurrency/commons/compare/v0.36.0...v0.37.0) (2024-04-28)
 
 
