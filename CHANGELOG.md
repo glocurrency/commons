@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.37.0](https://www.github.com/glocurrency/commons/compare/v0.36.0...v0.37.0) (2024-04-28)
+
+
+### Features
+
+* mock tx ([181c79b](https://www.github.com/glocurrency/commons/commit/181c79b43585804979b49adbdf5ecb1eb3200b1e))
+
+
+### Bug Fixes
+
+* fake tx ([a02401f](https://www.github.com/glocurrency/commons/commit/a02401f3ded549466bce044bbea607b741dcd1ba))
+* one line ([6272a11](https://www.github.com/glocurrency/commons/commit/6272a114431799ea5d1aeded9743e495751bf56a))
+* update deps ([e15bc82](https://www.github.com/glocurrency/commons/commit/e15bc82a9380b7e4fce8e7299c16e521d24afdbb))
+
 ## [0.36.0](https://www.github.com/glocurrency/commons/compare/v0.35.1...v0.36.0) (2024-04-26)
 
 
