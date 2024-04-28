@@ -12,6 +12,18 @@ type Task struct {
 	opts []TaskOption
 }
 
+func (t Task) GetTypename() string {
+	return t.typename
+}
+
+func (t Task) GetPayload() interface{} {
+	return t.payload
+}
+
+func (t Task) GetOptions() []TaskOption {
+	return t.opts
+}
+
 // NewTask returns a new Task given a type name and payload data that will be marshaled.
 // Options can be passed to configure task processing behavior.
 func NewTask(typename string, payload interface{}, opts ...TaskOption) *Task {
