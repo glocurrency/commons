@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.39.0](https://www.github.com/glocurrency/commons/compare/v0.38.0...v0.39.0) (2024-05-05)
+
+
+### Features
+
+* translator ([6929165](https://www.github.com/glocurrency/commons/commit/6929165e57fd9a00c9744af3d82674e843220b7a))
+
 ## [0.38.0](https://www.github.com/glocurrency/commons/compare/v0.37.0...v0.38.0) (2024-04-28)
 
 
