@@ -13,7 +13,6 @@ type HTTPServer struct {
 	Addr         string
 	ReadTimeout  time.Duration
 	WriteTimeout time.Duration
-	IdleTimeout  time.Duration
 }
 
 type HTTPClient struct {
