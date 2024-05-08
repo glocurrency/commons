@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.40.0](https://www.github.com/glocurrency/commons/compare/v0.39.0...v0.40.0) (2024-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* no iddle
+
+### Bug Fixes
+
+* no iddle ([5dd3521](https://www.github.com/glocurrency/commons/commit/5dd352185f93424ff5a90f855568b189f40ff06c))
+
 ## [0.39.0](https://www.github.com/glocurrency/commons/compare/v0.38.0...v0.39.0) (2024-05-05)
 
 
