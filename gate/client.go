@@ -16,6 +16,8 @@ type Client interface {
 	AuthenticateRequest(req *http.Request, serviceAccount string, expiry int64) error
 }
 
+var _ Client = (*client)(nil)
+
 type client struct {
 	iamCredsClient *iamcredentials.Service
 }
@@ -53,8 +55,8 @@ func (c *client) GenerateJWT(serviceAccount string, expiry int64) (string, error
 	return resp.SignedJwt, nil
 }
 
-func (c *client) AuthenticateRequest(req *http.Request, serviceAccount string) error {
-	jwt, err := c.GenerateJWT(serviceAccount, 3600)
+func (c *client) AuthenticateRequest(req *http.Request, serviceAccount string, expiry int64) error {
+	jwt, err := c.GenerateJWT(serviceAccount, expiry)
 	if err != nil {
 		return fmt.Errorf("error generating jwt: %w", err)
 	}
