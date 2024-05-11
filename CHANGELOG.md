@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.42.0](https://www.github.com/glocurrency/commons/compare/v0.41.0...v0.42.0) (2024-05-11)
+
+
+### Features
+
+* router with sync ([c5eb905](https://www.github.com/glocurrency/commons/commit/c5eb9055c8d2bc264f87802d0ff635c8418394ce))
+* validation ([866442a](https://www.github.com/glocurrency/commons/commit/866442ae024294abae311c37e5972a2137f0b03b))
+
 ## [0.41.0](https://www.github.com/glocurrency/commons/compare/v0.40.0...v0.41.0) (2024-05-08)
 
 
