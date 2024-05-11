@@ -7,12 +7,11 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	"github.com/glocurrency/commons/logger"
 	"github.com/glocurrency/commons/middleware"
+	"github.com/glocurrency/commons/router"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
@@ -26,12 +25,6 @@ var validPubSubUniqueMsg []byte
 
 //go:embed testdata/pubsub-invalid.json
 var invalidPubSubMsg []byte
-
-func TestMain(m *testing.M) {
-	logger.Log().SetOutput(io.Discard)
-	gin.SetMode(gin.ReleaseMode)
-	os.Exit(m.Run())
-}
 
 func TestPubSubCtx(t *testing.T) {
 	tests := []struct {
@@ -88,7 +81,7 @@ func TestPubSubCtx(t *testing.T) {
 			}
 
 			w := httptest.NewRecorder()
-			router := gin.New()
+			router := router.NewRouterWithValidation()
 			router.Use(m.RequireValidMessage())
 			router.POST("/", func(ctx *gin.Context) {
 				msg := middleware.MustGetMessageFromContext(ctx)

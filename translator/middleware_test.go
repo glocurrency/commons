@@ -1,15 +1,12 @@
 package translator_test
 
 import (
-	"io"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 
 	"github.com/gin-gonic/gin"
 	ginbinging "github.com/gin-gonic/gin/binding"
-	"github.com/glocurrency/commons/logger"
 	"github.com/glocurrency/commons/translator"
 	locale "github.com/go-playground/locales/en"
 	ut "github.com/go-playground/universal-translator"
@@ -17,12 +14,6 @@ import (
 	"github.com/go-playground/validator/v10/translations/en"
 	"github.com/stretchr/testify/assert"
 )
-
-func TestMain(m *testing.M) {
-	logger.Log().SetOutput(io.Discard)
-	gin.SetMode(gin.ReleaseMode)
-	os.Exit(m.Run())
-}
 
 func TestTranslator(t *testing.T) {
 	t.Parallel()
@@ -41,11 +32,10 @@ func TestTranslator(t *testing.T) {
 	for i := range tests {
 		test := tests[i]
 		t.Run(test.name, func(t *testing.T) {
-			t.Parallel()
-
 			req := httptest.NewRequest(http.MethodGet, "/", nil)
 			w := httptest.NewRecorder()
 
+			gin.SetMode(gin.ReleaseMode)
 			router := gin.New()
 
 			if test.bindTranslator {

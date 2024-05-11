@@ -5,18 +5,13 @@ import (
 	_ "embed"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 
 	"github.com/gin-gonic/gin"
 	pubsubrouter "github.com/glocurrency/commons/q/pubsub-router"
+	"github.com/glocurrency/commons/router"
 	"github.com/stretchr/testify/assert"
 )
-
-func TestMain(m *testing.M) {
-	gin.SetMode(gin.ReleaseMode)
-	os.Exit(m.Run())
-}
 
 //go:embed testdata/with-name-d.json
 var withNameD []byte
@@ -52,7 +47,7 @@ func TestRouting(t *testing.T) {
 			w := httptest.NewRecorder()
 			req := httptest.NewRequest(http.MethodPost, test.url, bytes.NewReader(test.body))
 
-			router := pubsubrouter.NewRouter(gin.New(), "/abc")
+			router := pubsubrouter.NewRouter(router.NewRouterWithValidation(), "/abc")
 
 			rootGroup := router.Group("/api")
 

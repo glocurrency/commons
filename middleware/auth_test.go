@@ -10,6 +10,7 @@ import (
 	ginfirebasemw "github.com/brokeyourbike/gin-firebase-middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/glocurrency/commons/middleware"
+	"github.com/glocurrency/commons/router"
 	"github.com/stretchr/testify/require"
 )
 
@@ -59,7 +60,7 @@ func TestRequireEmailVerified(t *testing.T) {
 			req.Header.Set("X-Apigateway-Api-Userinfo", base64.RawURLEncoding.EncodeToString(test.header))
 
 			w := httptest.NewRecorder()
-			router := gin.New()
+			router := router.NewRouterWithValidation()
 			router.Use(ginfirebasemw.Middleware())
 			router.Use(middleware.RequireEmailVerified())
 			router.GET("/", func(ctx *gin.Context) {
@@ -102,7 +103,7 @@ func TestRequireSecondFactorPhone(t *testing.T) {
 			req.Header.Set("X-Apigateway-Api-Userinfo", base64.RawURLEncoding.EncodeToString(test.header))
 
 			w := httptest.NewRecorder()
-			router := gin.New()
+			router := router.NewRouterWithValidation()
 			router.Use(ginfirebasemw.Middleware())
 			router.Use(middleware.RequireSecondFactorPhone())
 			router.GET("/", func(ctx *gin.Context) {

@@ -10,6 +10,7 @@ import (
 	ginfirebasemw "github.com/brokeyourbike/gin-firebase-middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/glocurrency/commons/middleware"
+	"github.com/glocurrency/commons/router"
 	"github.com/stretchr/testify/require"
 )
 
@@ -63,7 +64,7 @@ func TestRequireIfServiceAccount(t *testing.T) {
 			req.Header.Set("X-Apigateway-Api-Userinfo", base64.RawURLEncoding.EncodeToString(test.header))
 
 			w := httptest.NewRecorder()
-			router := gin.New()
+			router := router.NewRouterWithValidation()
 			router.Use(ginfirebasemw.Middleware())
 			router.Use(middleware.RequireIfServiceAccount(test.wantId))
 			router.GET("/", func(ctx *gin.Context) {

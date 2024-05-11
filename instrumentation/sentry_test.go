@@ -17,7 +17,6 @@ import (
 )
 
 func init() {
-	gin.SetMode(gin.ReleaseMode)
 	defer func() {
 		instrumentation.Recover(10 * time.Second)
 	}()

@@ -1,17 +1,15 @@
 package binding_test
 
 import (
-	"io"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"strings"
 	"testing"
 
 	"github.com/gin-gonic/gin"
 	ginbinging "github.com/gin-gonic/gin/binding"
 	"github.com/glocurrency/commons/binding"
-	"github.com/glocurrency/commons/logger"
+	"github.com/glocurrency/commons/router"
 	"github.com/glocurrency/commons/translator"
 	locale "github.com/go-playground/locales/en"
 	ut "github.com/go-playground/universal-translator"
@@ -21,12 +19,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
-
-func TestMain(m *testing.M) {
-	logger.Log().SetOutput(io.Discard)
-	gin.SetMode(gin.ReleaseMode)
-	os.Exit(m.Run())
-}
 
 func TestParseParamUUID(t *testing.T) {
 	tests := []struct {
@@ -47,7 +39,7 @@ func TestParseParamUUID(t *testing.T) {
 
 			req := httptest.NewRequest(http.MethodGet, "/"+test.paramValue, nil)
 
-			router := gin.New()
+			router := router.NewRouterWithValidation()
 			router.GET("/:id", func(ctx *gin.Context) {
 				got, err := binding.ParseParamUUID(ctx, test.paramName)
 				if test.wantErr {
@@ -82,7 +74,7 @@ func TestMustParseParamUUID(t *testing.T) {
 
 			req := httptest.NewRequest(http.MethodGet, "/"+test.paramValue, nil)
 
-			router := gin.New()
+			router := router.NewRouterWithValidation()
 			router.GET("/:id", func(ctx *gin.Context) {
 				got, ok := binding.MustParseParamUUID(ctx, test.paramName)
 				if test.wantOk {
@@ -122,7 +114,7 @@ func TestMustDecodeBody_CanDecode(t *testing.T) {
 			req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(test.body))
 			w := httptest.NewRecorder()
 
-			router := gin.New()
+			router := router.NewRouterWithValidation()
 			router.POST("/", func(ctx *gin.Context) {
 				var got testStruct
 
@@ -142,7 +134,7 @@ func TestMustDecodeBody_CanDecodeTwice(t *testing.T) {
 	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(`{"name": "John"}`))
 	w := httptest.NewRecorder()
 
-	router := gin.New()
+	router := router.NewRouterWithValidation()
 	router.POST("/", func(ctx *gin.Context) {
 		var got1 testStruct
 		require.True(t, binding.MustDecodeBody(ctx, &got1))
