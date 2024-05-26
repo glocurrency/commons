@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.43.0](https://www.github.com/glocurrency/commons/compare/v0.42.0...v0.43.0) (2024-05-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* one client
+
+### Features
+
+* one client ([d253ccb](https://www.github.com/glocurrency/commons/commit/d253ccbc7a615707707498dd1839bae866efcc7a))
+
 ## [0.42.0](https://www.github.com/glocurrency/commons/compare/v0.41.0...v0.42.0) (2024-05-11)
 
 
