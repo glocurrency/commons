@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.44.0](https://www.github.com/glocurrency/commons/compare/v0.43.0...v0.44.0) (2024-05-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* typo
+
+### Bug Fixes
+
+* typo ([b14e209](https://www.github.com/glocurrency/commons/commit/b14e20998c7462dc2bdc48b770984828f56859b6))
+
 ## [0.43.0](https://www.github.com/glocurrency/commons/compare/v0.42.0...v0.43.0) (2024-05-26)
 
 
