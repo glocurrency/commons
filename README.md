@@ -10,7 +10,7 @@ Common helpers for Golang projects
 ## Installation
 
 ```bash
-go get github.com/glocurrency/commons
+go get -u github.com/glocurrency/commons
 ```
 
 ## Local development
