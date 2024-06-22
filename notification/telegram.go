@@ -27,7 +27,7 @@ func WithButton(text, url string) MessageOption {
 	return withButton{text: text, url: url}
 }
 
-type MessageService interface {
+type TelegramService interface {
 	Send(context.Context, string, ...MessageOption) error
 }
 
