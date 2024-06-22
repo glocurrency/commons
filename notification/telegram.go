@@ -32,7 +32,6 @@ type MessageService interface {
 }
 
 type telegramService struct {
-	token  string
 	chatID int64
 	client *tgbotapi.BotAPI
 }
@@ -43,7 +42,7 @@ func NewTelegramService(token string, chatID int64) (*telegramService, error) {
 		return nil, fmt.Errorf("failed to create telegram bot: %w", err)
 	}
 
-	return &telegramService{token: token, chatID: chatID, client: client}, nil
+	return &telegramService{chatID: chatID, client: client}, nil
 }
 
 func (t *telegramService) Send(ctx context.Context, msg string, opts ...MessageOption) error {
