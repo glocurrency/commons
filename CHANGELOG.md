@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.45.0](https://www.github.com/glocurrency/commons/compare/v0.44.0...v0.45.0) (2024-06-23)
+
+
+### Features
+
+* telegram ([501a826](https://www.github.com/glocurrency/commons/commit/501a826c60cd50a62a30ce9272aa6ee6369393a9))
+
+
+### Bug Fixes
+
+* no need to store token ([2979129](https://www.github.com/glocurrency/commons/commit/29791292ce1c1a979848eba663a3582fa9e77ab9))
+* rename ([6394633](https://www.github.com/glocurrency/commons/commit/63946338418e668b70d6dff56b431c6909a2a19e))
+
 ## [0.44.0](https://www.github.com/glocurrency/commons/compare/v0.43.0...v0.44.0) (2024-05-26)
 
 
