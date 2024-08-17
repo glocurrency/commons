@@ -9,9 +9,9 @@ import (
 )
 
 type PubSubQ interface {
-	// Enqueue enqueues a task to the Pub/Sub queue, and returns info.
+	// Enqueue enqueues a task with Pub/Sub, and returns info.
 	EnqueueWithInfo(ctx context.Context, task *Task, opts ...PubSubOption) (*TaskInfo, error)
-	// Enqueue enqueues a task to the Pub/Sub queue.
+	// Enqueue enqueues a task with Pub/Sub.
 	Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) error
 }
 
@@ -23,16 +23,16 @@ func NewPubSubQ(client *pubsub.Client) *pubSubQ {
 	return &pubSubQ{client: client}
 }
 
-// Enqueue enqueues a task to the Pub/Sub queue.
+// Enqueue enqueues a task with Pub/Sub.
 func (q *pubSubQ) Enqueue(ctx context.Context, task *Task, opts ...PubSubOption) error {
 	_, err := q.EnqueueWithInfo(ctx, task, opts...)
 	return err
 }
 
-// Enqueue enqueues a task to the Pub/Sub queue, and returns info.
+// Enqueue enqueues a task with Pub/Sub, and returns info.
 func (q *pubSubQ) EnqueueWithInfo(ctx context.Context, task *Task, opts ...PubSubOption) (info *TaskInfo, err error) {
 	if task == nil {
-		return nil, fmt.Errorf("task is nil")
+		return nil, ErrTaskIsNil
 	}
 
 	topicID := task.typename
