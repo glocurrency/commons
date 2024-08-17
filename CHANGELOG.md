@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.47.0](https://www.github.com/glocurrency/commons/compare/v0.46.1...v0.47.0) (2024-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* qrouter
+
+### Features
+
+* q message ([008775f](https://www.github.com/glocurrency/commons/commit/008775f8c08bd63e54e7559642c34ee8e2cba197))
+* q middleware ([61b4890](https://www.github.com/glocurrency/commons/commit/61b4890bc60a9973d8ed30e1a3bf2ea736a6c0d2))
+
+
+### Bug Fixes
+
+* qrouter ([c887478](https://www.github.com/glocurrency/commons/commit/c887478346f225f1de44c846b79a9ce698fe9647))
+* qrouter ([5eb2960](https://www.github.com/glocurrency/commons/commit/5eb296003ea1e28ad4840596197840936d8fd6b6))
+
 ### [0.46.1](https://www.github.com/glocurrency/commons/compare/v0.46.0...v0.46.1) (2024-08-17)
 
 
