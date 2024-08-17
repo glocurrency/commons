@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.46.0](https://www.github.com/glocurrency/commons/compare/v0.45.0...v0.46.0) (2024-08-17)
+
+
+### Features
+
+* cloudtasks ([0e72077](https://www.github.com/glocurrency/commons/commit/0e72077a0165e5d66dd8626e986f93bccfd74a3c))
+
 ## [0.45.0](https://www.github.com/glocurrency/commons/compare/v0.44.0...v0.45.0) (2024-06-23)
 
 
