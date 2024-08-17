@@ -34,7 +34,7 @@ func (r *router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 func RewriteForQ(req *http.Request) error {
 	msg, err := q.NewQMessage(req)
 	if err != nil {
-		return fmt.Errorf("cannot create q message: %w", err)
+		return fmt.Errorf("cannot parse q message: %w", err)
 	}
 
 	if msg.Name == "" {
