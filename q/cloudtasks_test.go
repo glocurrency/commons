@@ -4,15 +4,15 @@ import (
 	"context"
 	"testing"
 
-	"cloud.google.com/go/pubsub"
+	cloudtasks "cloud.google.com/go/cloudtasks/apiv2"
 	"github.com/glocurrency/commons/q"
 	"github.com/stretchr/testify/require"
 )
 
-func TestPubSubQ_Enqueue_Marshal(t *testing.T) {
+func TestCloudTasksQ_Enqueue_Marshal(t *testing.T) {
 	cannotMarshall := make(chan int)
 
-	ps := q.NewPubSubQ(&pubsub.Client{})
+	ps := q.NewCloudTasksQ(q.CloudTasksConfig{}, &cloudtasks.Client{})
 
 	err := ps.Enqueue(context.TODO(), q.NewTask("test", cannotMarshall))
 	require.Error(t, err)

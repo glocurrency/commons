@@ -12,28 +12,43 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-type Config interface {
-	GetProjectID() string
-	GetLocationID() string
-	GetBaseUrl() string
-	GetServiceAccountEmail() string
+var ErrTaskIsNil = fmt.Errorf("task is nil")
+
+type CloudTasksConfig struct {
+	ProjectID           string
+	LocationID          string
+	BaseUrl             string
+	ServiceAccountEmail string
 }
 
 type CloudTasksQ interface {
-	// Enqueue enqueues a task to the ClousTasks queue.
-	Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (*TaskInfo, error)
+	// Enqueue enqueues a task with ClousTasks, and returns info.
+	EnqueueWithInfo(ctx context.Context, task *Task, opts ...CloudTasksOption) (*TaskInfo, error)
+	// Enqueue enqueues a task with ClousTasks.
+	Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) error
 }
 
 type cloudTasksQ struct {
-	cfg    Config
+	cfg    CloudTasksConfig
 	client *cloudtasks.Client
 }
 
-func NewCloudTasksQ(cfg Config, client *cloudtasks.Client) *cloudTasksQ {
+func NewCloudTasksQ(cfg CloudTasksConfig, client *cloudtasks.Client) *cloudTasksQ {
 	return &cloudTasksQ{cfg: cfg, client: client}
 }
 
-func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) (info *TaskInfo, err error) {
+// Enqueue enqueues a task with ClousTasks.
+func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTasksOption) error {
+	_, err := q.EnqueueWithInfo(ctx, task, opts...)
+	return err
+}
+
+// Enqueue enqueues a task with ClousTasks, and returns info.
+func (q *cloudTasksQ) EnqueueWithInfo(ctx context.Context, task *Task, opts ...CloudTasksOption) (info *TaskInfo, err error) {
+	if task == nil {
+		return nil, ErrTaskIsNil
+	}
+
 	queueID := task.typename
 	uniqueKey := ""
 
@@ -56,7 +71,7 @@ func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTask
 		}
 	}
 
-	queuePath := fmt.Sprintf("projects/%s/locations/%s/queues/%s", q.cfg.GetProjectID(), q.cfg.GetLocationID(), queueID)
+	queuePath := fmt.Sprintf("projects/%s/locations/%s/queues/%s", q.cfg.ProjectID, q.cfg.LocationID, queueID)
 
 	req := &cloudtaskspb.CreateTaskRequest{
 		Parent: queuePath,
@@ -64,12 +79,12 @@ func (q *cloudTasksQ) Enqueue(ctx context.Context, task *Task, opts ...CloudTask
 			MessageType: &cloudtaskspb.Task_HttpRequest{
 				HttpRequest: &cloudtaskspb.HttpRequest{
 					HttpMethod: cloudtaskspb.HttpMethod_POST,
-					Url:        fmt.Sprintf("%s/%s", q.cfg.GetBaseUrl(), queueID),
+					Url:        fmt.Sprintf("%s/%s", q.cfg.BaseUrl, queueID),
 					Body:       payload,
 					Headers:    map[string]string{"Content-Type": "application/json", nameKey: task.typename, groupKey: queueID},
 					AuthorizationHeader: &cloudtaskspb.HttpRequest_OidcToken{
 						OidcToken: &cloudtaskspb.OidcToken{
-							ServiceAccountEmail: q.cfg.GetServiceAccountEmail(),
+							ServiceAccountEmail: q.cfg.ServiceAccountEmail,
 						},
 					},
 				},
