@@ -1,4 +1,4 @@
-package pubsubrouter
+package qrouter
 
 import (
 	"context"

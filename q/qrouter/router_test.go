@@ -1,4 +1,4 @@
-package pubsubrouter_test
+package qrouter_test
 
 import (
 	"bytes"
@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	pubsubrouter "github.com/glocurrency/commons/q/pubsub-router"
+	"github.com/glocurrency/commons/q/qrouter"
 	"github.com/glocurrency/commons/router"
 	"github.com/stretchr/testify/assert"
 )
@@ -47,7 +47,7 @@ func TestRouting(t *testing.T) {
 			w := httptest.NewRecorder()
 			req := httptest.NewRequest(http.MethodPost, test.url, bytes.NewReader(test.body))
 
-			router := pubsubrouter.NewRouter(router.NewRouterWithValidation(), "/abc")
+			router := qrouter.NewRouter(router.NewRouterWithValidation(), "/abc")
 
 			rootGroup := router.Group("/api")
 
