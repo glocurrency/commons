@@ -1,11 +1,8 @@
 package pubsubrouter
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -26,7 +23,7 @@ func NewRouter(engine *gin.Engine, prefix string) *router {
 
 func (r *router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if strings.Contains(req.URL.Path, r.prefix) {
-		if err := RewriteForPubSub(req); err != nil {
+		if err := RewriteForQ(req); err != nil {
 			instrumentation.NoticeError(context.Background(), err, "cannot rewrite",
 				instrumentation.WithField("prefix", r.prefix))
 		}
@@ -34,21 +31,13 @@ func (r *router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	r.Engine.ServeHTTP(w, req)
 }
 
-func RewriteForPubSub(req *http.Request) error {
-	data, err := io.ReadAll(req.Body)
+func RewriteForQ(req *http.Request) error {
+	msg, err := q.NewQMessage(req)
 	if err != nil {
-		return fmt.Errorf("cannot read body: %w", err)
+		return fmt.Errorf("cannot create q message: %w", err)
 	}
 
-	req.Body = io.NopCloser(bytes.NewBuffer(data))
-
-	var msg q.PubSubMessage
-	if err := json.Unmarshal(data, &msg); err != nil {
-		return fmt.Errorf("cannot unmarshal '%s': %w", string(data), err)
-	}
-
-	name := msg.GetName()
-	if name == "" {
+	if msg.Name == "" {
 		return nil
 	}
 
@@ -57,9 +46,9 @@ func RewriteForPubSub(req *http.Request) error {
 		return fmt.Errorf("cannot parse uri '%s': %w", req.RequestURI, err)
 	}
 
-	parsedURI.Path = strings.TrimRight(parsedURI.Path, "/") + "/" + name
+	parsedURI.Path = strings.TrimRight(parsedURI.Path, "/") + "/" + msg.Name
 	req.RequestURI = parsedURI.String()
 
-	req.URL.Path = strings.TrimRight(req.URL.Path, "/") + "/" + name
+	req.URL.Path = strings.TrimRight(req.URL.Path, "/") + "/" + msg.Name
 	return nil
 }

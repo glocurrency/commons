@@ -1,8 +1,11 @@
 package q
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
+	"net/http"
 	"time"
 )
 
@@ -55,6 +58,48 @@ func (m *PubSubMessage) GetGroup() string {
 
 func (m *PubSubMessage) UnmarshalData(v interface{}) error {
 	if err := json.Unmarshal(m.Message.Data, v); err != nil {
+		return fmt.Errorf("failed to unmarshal payload: %w", err)
+	}
+	return nil
+}
+
+type QMessage struct {
+	Name      string
+	Group     string
+	UniqueKey string
+	Data      []byte
+}
+
+func NewQMessage(req *http.Request) (msg QMessage, err error) {
+	data, err := io.ReadAll(req.Body)
+	if err != nil {
+		return msg, fmt.Errorf("cannot read body: %w", err)
+	}
+
+	msg.Data = data
+	req.Body = io.NopCloser(bytes.NewBuffer(data))
+
+	if req.Header.Get("X-Cloudtasks-Queuename") != "" {
+		msg.Name = req.Header.Get(nameKey)
+		msg.Group = req.Header.Get(groupKey)
+		msg.UniqueKey = req.Header.Get(uniqueKeyKey)
+		return msg, nil
+	}
+
+	var psm PubSubMessage
+	if err := json.Unmarshal(data, &psm); err != nil {
+		return msg, fmt.Errorf("cannot unmarshal '%s': %w", string(data), err)
+	}
+
+	msg.Name = psm.GetName()
+	msg.Group = psm.GetGroup()
+	msg.UniqueKey = psm.GetUniqueKey()
+	msg.Data = psm.Message.Data
+	return msg, nil
+}
+
+func (m *QMessage) UnmarshalData(v interface{}) error {
+	if err := json.Unmarshal(m.Data, v); err != nil {
 		return fmt.Errorf("failed to unmarshal payload: %w", err)
 	}
 	return nil
