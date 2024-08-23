@@ -1,0 +1,29 @@
+name: coverage
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
+      with:
+        go-version-file: 'go.mod'
+    - uses: brokeyourbike/go-mockery-action@v0.1
+      with:
+        mockery-version: '2.42.0'
+    - run: make mock
+    - run: go test -race -covermode=atomic -coverprofile=coverage.out -v ./...
+
+    - uses: paambaati/codeclimate-action@v5
+      continue-on-error: true
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_TOKEN }}
+      with:
+        prefix: 'github.com/glocurrency/commons'
+        coverageLocations: ./coverage.out:gocov

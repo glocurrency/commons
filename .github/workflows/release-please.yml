@@ -2,17 +2,24 @@ name: release-please
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
+
+concurrency:
+  group: release-please
 
 jobs:
-  update_release_draft:
+  update-draft:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.RELEASER_APPID }}
+          private-key: ${{ secrets.RELEASER_PRIVATE_TOKEN }}
       - uses: google-github-actions/release-please-action@v2
         with:
           release-type: go
           bump-minor-pre-major: true
+          token: ${{ steps.app-token.outputs.token }}
