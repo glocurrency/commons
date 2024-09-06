@@ -64,6 +64,14 @@ func NewErrResponseValidationErrors(message string, errors map[string]string) (i
 	}
 }
 
+func NewErrResponseValidationWarnings(message string, warnings map[string]string) (int, ErrResponse) {
+	return http.StatusBadRequest, ErrResponse{
+		Code:     http.StatusBadRequest,
+		Message:  message,
+		Warnings: warnings,
+	}
+}
+
 func NewErrResponseException(message string) (int, ErrResponse) {
 	return http.StatusInternalServerError, ErrResponse{
 		Code:    http.StatusInternalServerError,
