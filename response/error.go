@@ -10,6 +10,8 @@ type ErrResponse struct {
 	Message string `json:"message"`
 	// Validation errors
 	Errors map[string]string `json:"errors,omitempty"`
+	// Validation warnings
+	Warnings map[string]string `json:"warnings,omitempty"`
 }
 
 func (e ErrResponse) HasErrorField(errorField string) bool {
