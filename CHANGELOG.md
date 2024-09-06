@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.47.1](https://www.github.com/glocurrency/commons/compare/v0.47.0...v0.47.1) (2024-09-06)
+
+
+### Bug Fixes
+
+* warnings ([141ead8](https://www.github.com/glocurrency/commons/commit/141ead84ad0b7b30a20f808e49909a57ed8b1102))
+* warnings ([75ee492](https://www.github.com/glocurrency/commons/commit/75ee492c423612d00fc6426b1afa12a597f334be))
+
 ## [0.47.0](https://www.github.com/glocurrency/commons/compare/v0.46.1...v0.47.0) (2024-08-17)
 
 
