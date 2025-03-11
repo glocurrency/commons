@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.0](https://www.github.com/glocurrency/commons/compare/v0.47.1...v0.48.0) (2025-03-11)
+
+
+### Features
+
+* 18yo ([139c08a](https://www.github.com/glocurrency/commons/commit/139c08a61663242a7d3f56361d93e0b26354094b))
+
 ### [0.47.1](https://www.github.com/glocurrency/commons/compare/v0.47.0...v0.47.1) (2024-09-06)
 
 
