@@ -11,8 +11,8 @@ import (
 	"github.com/gin-gonic/gin"
 	ginbinging "github.com/gin-gonic/gin/binding"
 	"github.com/glocurrency/commons/binding"
+	"github.com/glocurrency/commons/router"
 	"github.com/glocurrency/commons/translator"
-	"github.com/glocurrency/commons/validation"
 	"github.com/go-playground/validator/v10"
 	"github.com/stretchr/testify/assert"
 )
@@ -52,25 +52,21 @@ func Test_RegisterTranslatorFor(t *testing.T) {
 			w := httptest.NewRecorder()
 			req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(tt.payload))
 
-			router := gin.New()
-			if v, ok := ginbinging.Validator.Engine().(*validator.Validate); ok {
-				v.RegisterValidation("alphanumspace", validation.ValidateAlphaNumSpace)
-				v.RegisterValidation("alphanumspacedash", validation.ValidateAlphaNumSpaceDash)
-				v.RegisterValidation("banksupported", validation.ValidateBankSupported)
-				v.RegisterValidation("18yo", validation.Validate18YearsOld)
+			r := router.NewRouterWithValidation()
 
+			if v, ok := ginbinging.Validator.Engine().(*validator.Validate); ok {
 				t := translator.RegisterTranslatorFor(v)
-				router.Use(translator.SetTranslatorMiddleware(t))
+				r.Use(translator.SetTranslatorMiddleware(t))
 			}
 
-			router.POST("/", func(ctx *gin.Context) {
+			r.POST("/", func(ctx *gin.Context) {
 				var testStruct TestStruct
 				if !binding.MustDecodeBody(ctx, &testStruct) {
 					return
 				}
 				ctx.Status(http.StatusOK)
 			})
-			router.ServeHTTP(w, req)
+			r.ServeHTTP(w, req)
 
 			assert.Equal(t, tt.wantStatus, w.Code)
 			assert.Contains(t, w.Body.String(), tt.wantResponse)
