@@ -1,10 +1,12 @@
 package translator_test
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	ginbinging "github.com/gin-gonic/gin/binding"
@@ -21,9 +23,14 @@ type TestStruct struct {
 	Bank    string `json:"bank" binding:"omitempty,banksupported"`
 	BIC     string `json:"bic" binding:"omitempty,bic"`
 	Country string `json:"country" binding:"omitempty,iso3166_1_alpha2"`
+	Age     string `json:"age" binding:"omitempty,18yo"`
 }
 
 func Test_RegisterTranslatorFor(t *testing.T) {
+	now := time.Now()
+	seventeenYearsAgo := now.AddDate(-17, 0, 0)
+	eighteenYearsAgo := now.AddDate(-18, 0, 0)
+
 	tests := []struct {
 		name         string
 		payload      string
@@ -35,6 +42,8 @@ func Test_RegisterTranslatorFor(t *testing.T) {
 		{"banksupported", `{"bank": "%"}`, 400, "bank can only contain bank suported characters"},
 		{"bic", `{"bic": "123"}`, 400, "bic must comply with BIC format"},
 		{"country", `{"country": "XX"}`, 400, "country must be a valid country code"},
+		{"17 years old", fmt.Sprintf(`{"age": "%s"}`, seventeenYearsAgo.Format(time.DateOnly)), 400, "age should be at least 18 years old"},
+		{"18 years old", fmt.Sprintf(`{"age": "%s"}`, eighteenYearsAgo.Format(time.DateOnly)), 200, ""},
 	}
 
 	for _, tt := range tests {
@@ -48,6 +57,7 @@ func Test_RegisterTranslatorFor(t *testing.T) {
 				v.RegisterValidation("alphanumspace", validation.ValidateAlphaNumSpace)
 				v.RegisterValidation("alphanumspacedash", validation.ValidateAlphaNumSpaceDash)
 				v.RegisterValidation("banksupported", validation.ValidateBankSupported)
+				v.RegisterValidation("18yo", validation.Validate18YearsOld)
 
 				t := translator.RegisterTranslatorFor(v)
 				router.Use(translator.SetTranslatorMiddleware(t))
