@@ -15,6 +15,7 @@ func init() {
 		v.RegisterValidation("alphanumspace", validation.ValidateAlphaNumSpace)
 		v.RegisterValidation("alphanumspacedash", validation.ValidateAlphaNumSpaceDash)
 		v.RegisterValidation("banksupported", validation.ValidateBankSupported)
+		v.RegisterValidation("18yo", validation.Validate18YearsOld)
 	}
 }
 
