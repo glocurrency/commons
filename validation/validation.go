@@ -2,6 +2,7 @@ package validation
 
 import (
 	"regexp"
+	"time"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -22,4 +23,20 @@ var bankSupportedRegex = regexp.MustCompile(`^[a-zA-Z0-9\/\-?:().,&"+\s]+$`)
 
 func ValidateBankSupported(fl validator.FieldLevel) bool {
 	return bankSupportedRegex.MatchString(fl.Field().String())
+}
+
+func Validate18YearsOld(fl validator.FieldLevel) bool {
+	dob, err := time.Parse(time.DateOnly, fl.Field().String())
+	if err != nil {
+		return false
+	}
+
+	now := time.Now()
+	age := now.Year() - dob.Year()
+
+	if now.YearDay() < dob.YearDay() {
+		age--
+	}
+
+	return age >= 18
 }
