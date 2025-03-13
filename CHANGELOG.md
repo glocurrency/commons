@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.50.0](https://www.github.com/glocurrency/commons/compare/v0.49.0...v0.50.0) (2025-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* deps
+
+### Bug Fixes
+
+* deps ([18986f1](https://www.github.com/glocurrency/commons/commit/18986f1206e52729b81654a7a020927b67e6c7b8))
+
 ## [0.49.0](https://www.github.com/glocurrency/commons/compare/v0.48.0...v0.49.0) (2025-03-11)
 
 
