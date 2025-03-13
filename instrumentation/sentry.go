@@ -20,12 +20,11 @@ func InitFromEnv() error {
 	}
 
 	return sentry.Init(sentry.ClientOptions{
-		Dsn:                os.Getenv("SENTRY_DSN"),
-		Environment:        os.Getenv("SENTRY_ENV"),
-		EnableTracing:      os.Getenv("SENTRY_TRACE") == "true",
-		TracesSampleRate:   traceRate,
-		AttachStacktrace:   true,
-		ProfilesSampleRate: 1.0,
+		Dsn:              os.Getenv("SENTRY_DSN"),
+		Environment:      os.Getenv("SENTRY_ENV"),
+		EnableTracing:    os.Getenv("SENTRY_TRACE") == "true",
+		TracesSampleRate: traceRate,
+		AttachStacktrace: true,
 	})
 }
 
