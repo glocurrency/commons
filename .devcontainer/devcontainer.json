@@ -9,7 +9,7 @@
     "features": {
         "ghcr.io/brokeyourbike/devcontainer-features/reflex:0": {},
         "ghcr.io/brokeyourbike/devcontainer-features/staticcheck:0": {
-            "version": "2023.1.6"
+            "version": "2025.1.1"
         },
         "ghcr.io/brokeyourbike/devcontainer-features/mockery-go:0": {
             "version": "2.42.0"
