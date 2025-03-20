@@ -2,16 +2,14 @@ package audit
 
 import (
 	"encoding/json"
-
-	"github.com/google/uuid"
 )
 
 type BasicEvent struct {
 	EventType   string
 	ActorType   string
-	ActorID     uuid.NullUUID
+	ActorID     *string
 	TargetType  string
-	TargetID    uuid.NullUUID
+	TargetID    *string
 	PrevPayload json.RawMessage
 	Payload     json.RawMessage
 }
@@ -30,10 +28,12 @@ func NewBasicEvent(event string, targetType string, actorType string, opts ...Ev
 	return be
 }
 
-func NewBasicEventWithTarget(event string, target Target, actorType string, opts ...EventOption) *BasicEvent {
+func NewBasicEventWithUUIDTarget(event string, target UUIDTarget, actorType string, opts ...EventOption) *BasicEvent {
+	targetId := target.GetID().String()
+
 	be := &BasicEvent{
 		EventType:  event,
-		TargetID:   uuid.NullUUID{UUID: target.GetID(), Valid: true},
+		TargetID:   &targetId,
 		TargetType: target.GetAuditTargetType(),
 		ActorType:  actorType,
 	}
@@ -50,27 +50,27 @@ type EventOption interface {
 }
 
 type withActorID struct {
-	actorID uuid.NullUUID
+	actorID string
 }
 
 func (w withActorID) Apply(e *BasicEvent) {
-	e.ActorID = w.actorID
+	e.ActorID = &w.actorID
 }
 
-func WithActorID(id uuid.UUID) EventOption {
-	return withActorID{actorID: uuid.NullUUID{UUID: id, Valid: true}}
+func WithActorID(id string) EventOption {
+	return withActorID{actorID: id}
 }
 
 type withTargetID struct {
-	targetID uuid.NullUUID
+	targetID string
 }
 
 func (w withTargetID) Apply(e *BasicEvent) {
-	e.TargetID = w.targetID
+	e.TargetID = &w.targetID
 }
 
-func WithTargetID(id uuid.UUID) EventOption {
-	return withTargetID{targetID: uuid.NullUUID{UUID: id, Valid: true}}
+func WithTargetID(id string) EventOption {
+	return withTargetID{targetID: id}
 }
 
 type withPrevPayload struct{ payload json.RawMessage }

@@ -25,22 +25,22 @@ func TestNewBasicEvent(t *testing.T) {
 		"audit-type",
 		"target-type",
 		"actor-type",
-		audit.WithTargetID(uuid.New()),
-		audit.WithActorID(uuid.New()),
+		audit.WithTargetID(uuid.NewString()),
+		audit.WithActorID(uuid.NewString()),
 		audit.WithPayload(target),
 		audit.WithPrevPayload(target),
 	)
 	require.NotNil(t, event)
 }
 
-func TestNewBasicEventWithTarget(t *testing.T) {
+func TestNewBasicEventWithUUIDTarget(t *testing.T) {
 	target := mockTarget{ID: uuid.New()}
 
-	event := audit.NewBasicEventWithTarget(
+	event := audit.NewBasicEventWithUUIDTarget(
 		"audit-type",
 		target,
 		"actor-type",
-		audit.WithActorID(uuid.New()),
+		audit.WithActorID(uuid.NewString()),
 		audit.WithPayload(target),
 		audit.WithPrevPayload(target),
 	)

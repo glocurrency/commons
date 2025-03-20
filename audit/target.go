@@ -9,7 +9,7 @@ const (
 	ActorTypeWebhook = "WEBHOOK"
 )
 
-type Target interface {
+type UUIDTarget interface {
 	GetID() uuid.UUID
 	GetAuditTargetType() string
 }
