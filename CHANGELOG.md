@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.0](https://www.github.com/glocurrency/commons/compare/v0.50.0...v0.51.0) (2025-03-20)
+
+
+### Features
+
+* uuid target ([88d714a](https://www.github.com/glocurrency/commons/commit/88d714a8d9c292c1ee3c29867936903d2c2aae43))
+
 ## [0.50.0](https://www.github.com/glocurrency/commons/compare/v0.49.0...v0.50.0) (2025-03-13)
 
 
