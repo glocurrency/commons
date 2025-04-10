@@ -66,5 +66,12 @@ func RegisterTranslatorFor(v *validator.Validate) ut.Translator {
 		return t
 	})
 
+	v.RegisterTranslation("notold", fallback, func(ut ut.Translator) error {
+		return ut.Add("notold", "{0} should be a valid age", true)
+	}, func(ut ut.Translator, fe validator.FieldError) string {
+		t, _ := ut.T("notold", fe.Field())
+		return t
+	})
+
 	return fallback
 }

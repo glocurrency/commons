@@ -23,13 +23,15 @@ type TestStruct struct {
 	Bank    string `json:"bank" binding:"omitempty,banksupported"`
 	BIC     string `json:"bic" binding:"omitempty,bic"`
 	Country string `json:"country" binding:"omitempty,iso3166_1_alpha2"`
-	Age     string `json:"age" binding:"omitempty,18yo"`
+	Age     string `json:"age" binding:"omitempty,18yo,notold"`
 }
 
 func Test_RegisterTranslatorFor(t *testing.T) {
 	now := time.Now()
 	seventeenYearsAgo := now.AddDate(-17, 0, 0)
 	eighteenYearsAgo := now.AddDate(-18, 0, 0)
+	oneHundredYearsAgo := now.AddDate(-100, 0, 0)
+	twoHundredYearsAgo := now.AddDate(-200, 0, 0)
 
 	tests := []struct {
 		name         string
@@ -44,6 +46,8 @@ func Test_RegisterTranslatorFor(t *testing.T) {
 		{"country", `{"country": "XX"}`, 400, "country must be a valid country code"},
 		{"17 years old", fmt.Sprintf(`{"age": "%s"}`, seventeenYearsAgo.Format(time.DateOnly)), 400, "age should be at least 18 years old"},
 		{"18 years old", fmt.Sprintf(`{"age": "%s"}`, eighteenYearsAgo.Format(time.DateOnly)), 200, ""},
+		{"100 years old", fmt.Sprintf(`{"age": "%s"}`, oneHundredYearsAgo.Format(time.DateOnly)), 200, ""},
+		{"200 years old", fmt.Sprintf(`{"age": "%s"}`, twoHundredYearsAgo.Format(time.DateOnly)), 400, "age should be a valid age"},
 	}
 
 	for _, tt := range tests {

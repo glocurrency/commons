@@ -40,3 +40,19 @@ func Validate18YearsOld(fl validator.FieldLevel) bool {
 
 	return age >= 18
 }
+
+func Validate100YearsOld(fl validator.FieldLevel) bool {
+	dob, err := time.Parse(time.DateOnly, fl.Field().String())
+	if err != nil {
+		return false
+	}
+
+	now := time.Now()
+	age := now.Year() - dob.Year()
+
+	if now.YearDay() < dob.YearDay() {
+		age--
+	}
+
+	return age <= 100
+}
