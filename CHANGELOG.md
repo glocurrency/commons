@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.52.0](https://www.github.com/glocurrency/commons/compare/v0.51.0...v0.52.0) (2025-04-10)
+
+
+### Features
+
+* notold ([e36e22c](https://www.github.com/glocurrency/commons/commit/e36e22c879fe467721fa14f6991ffd76c34bfad9))
+
 ## [0.51.0](https://www.github.com/glocurrency/commons/compare/v0.50.0...v0.51.0) (2025-03-20)
 
 
