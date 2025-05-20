@@ -16,6 +16,7 @@ func init() {
 	logger.SetOutput(Writer{})
 	logger.SetLevel(logrus.DebugLevel)
 	logger.SetFormatter(&logrus.JSONFormatter{})
+	logger.AddHook(SentryHook{})
 }
 
 func Log() *logrus.Logger {
