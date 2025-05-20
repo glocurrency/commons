@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.53.0](https://www.github.com/glocurrency/commons/compare/v0.52.0...v0.53.0) (2025-05-20)
+
+
+### Features
+
+* sentry hook ([c261142](https://www.github.com/glocurrency/commons/commit/c261142afb7111c6da5d591064c4180334adb4e2))
+
+
+### Bug Fixes
+
+* enable by default ([7e41359](https://www.github.com/glocurrency/commons/commit/7e41359eefbb93e580cfa84aba03fe9888073077))
+
 ## [0.52.0](https://www.github.com/glocurrency/commons/compare/v0.51.0...v0.52.0) (2025-04-10)
 
 
