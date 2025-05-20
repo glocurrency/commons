@@ -23,6 +23,7 @@ func InitFromEnv() error {
 		Dsn:              os.Getenv("SENTRY_DSN"),
 		Environment:      os.Getenv("SENTRY_ENV"),
 		EnableTracing:    os.Getenv("SENTRY_TRACE") == "true",
+		EnableLogs:       true,
 		TracesSampleRate: traceRate,
 		AttachStacktrace: true,
 	})
