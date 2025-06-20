@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.54.0](https://www.github.com/glocurrency/commons/compare/v0.53.0...v0.54.0) (2025-06-20)
+
+
+### Features
+
+* totp ([5a7819b](https://www.github.com/glocurrency/commons/commit/5a7819bcc98b27ac38a895693f8873d6fd8c8513))
+
 ## [0.53.0](https://www.github.com/glocurrency/commons/compare/v0.52.0...v0.53.0) (2025-05-20)
 
 
