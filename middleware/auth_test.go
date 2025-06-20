@@ -115,3 +115,46 @@ func TestRequireSecondFactorPhone(t *testing.T) {
 		})
 	}
 }
+
+func TestRequireSecondFactor(t *testing.T) {
+	tests := []struct {
+		name       string
+		header     []byte
+		wantStatus int
+	}{
+
+		{
+			"no second factor",
+			userEmailVerified,
+			http.StatusForbidden,
+		},
+		{
+			"has second factor phone",
+			userSecondFactorPhone,
+			http.StatusOK,
+		},
+	}
+
+	for i := range tests {
+		test := tests[i]
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+
+			req := httptest.NewRequest(http.MethodGet, "/", nil)
+
+			// encoding the header value to match what expected by `ginfirebasemw`
+			req.Header.Set("X-Apigateway-Api-Userinfo", base64.RawURLEncoding.EncodeToString(test.header))
+
+			w := httptest.NewRecorder()
+			router := router.NewRouterWithValidation()
+			router.Use(ginfirebasemw.Middleware())
+			router.Use(middleware.RequireSecondFactor())
+			router.GET("/", func(ctx *gin.Context) {
+				ctx.String(http.StatusOK, "the end.")
+			})
+			router.ServeHTTP(w, req)
+
+			require.Equal(t, test.wantStatus, w.Code)
+		})
+	}
+}
