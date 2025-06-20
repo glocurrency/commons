@@ -48,3 +48,22 @@ func RequireSecondFactorPhone() gin.HandlerFunc {
 		ctx.Next()
 	}
 }
+
+func RequireSecondFactor() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		userInfo := ginfirebasemw.GetUserInfo(ctx)
+
+		// skip validation of service accounts
+		if userInfo.IsServiceAccount() {
+			ctx.Next()
+			return
+		}
+
+		if userInfo.Firebase.SignInSecondFactor == "" {
+			ctx.AbortWithStatusJSON(response.NewErrResponseForbidden("Please add a second factor authentication"))
+			return
+		}
+
+		ctx.Next()
+	}
+}
