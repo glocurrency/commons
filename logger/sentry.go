@@ -55,19 +55,19 @@ func (h SentryHook) Fire(entry *logrus.Entry) error {
 
 	switch entry.Level {
 	case logrus.TraceLevel:
-		sentryLogger.Trace(ctx, entry.Message)
+		sentryLogger.Trace()
 	case logrus.DebugLevel:
-		sentryLogger.Debug(ctx, entry.Message)
+		sentryLogger.Debug()
 	case logrus.InfoLevel:
-		sentryLogger.Info(ctx, entry.Message)
+		sentryLogger.Info()
 	case logrus.WarnLevel:
-		sentryLogger.Warn(ctx, entry.Message)
+		sentryLogger.Warn()
 	case logrus.ErrorLevel:
-		sentryLogger.Error(ctx, entry.Message)
+		sentryLogger.Error()
 	case logrus.FatalLevel:
-		sentryLogger.Fatal(ctx, entry.Message)
+		sentryLogger.Fatal()
 	case logrus.PanicLevel:
-		sentryLogger.Panic(ctx, entry.Message)
+		sentryLogger.Panic()
 	}
 
 	return nil
