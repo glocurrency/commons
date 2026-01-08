@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-go@v5
+    - uses: actions/checkout@v6
+    - uses: actions/setup-go@v6
       with:
         go-version-file: 'go.mod'
     - run: go build -v ./...
@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
         with:
           go-version-file: 'go.mod'
-      - uses: brokeyourbike/go-mockery-action@v0.1
+      - uses: brokeyourbike/go-mockery-action@v0.2
         with:
           mockery-version: '2.53.3'
       - run: make mock
@@ -40,11 +40,11 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-go@v5
+    - uses: actions/checkout@v6
+    - uses: actions/setup-go@v6
       with:
         go-version-file: 'go.mod'
-    - uses: brokeyourbike/go-mockery-action@v0.1
+    - uses: brokeyourbike/go-mockery-action@v0.2
       with:
         mockery-version: '2.53.3'
     - run: make mock
