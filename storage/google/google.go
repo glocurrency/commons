@@ -22,9 +22,6 @@ func NewGoogleStorage(client *storage.Client, bucket string) *google {
 
 // Upload uploads a file to Google Cloud Storage
 func (g *google) Upload(ctx context.Context, name string, r io.ReadSeeker) error {
-	ctx, cancel := context.WithTimeout(ctx, time.Second*10)
-	defer cancel()
-
 	w := g.client.Bucket(g.bucket).Object(name).NewWriter(ctx)
 
 	if contentType, err := mimetype.DetectReader(r); err == nil {
@@ -46,9 +43,6 @@ func (g *google) Upload(ctx context.Context, name string, r io.ReadSeeker) error
 
 // Download downloads a file from Google Cloud Storage. Returns content, content type and error
 func (g *google) Download(ctx context.Context, name string) ([]byte, string, error) {
-	ctx, cancel := context.WithTimeout(ctx, time.Second*10)
-	defer cancel()
-
 	r, err := g.client.Bucket(g.bucket).Object(name).NewReader(ctx)
 	if err != nil {
 		return nil, "", fmt.Errorf("failed to create reader: %w", err)
