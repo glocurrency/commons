@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.1](https://github.com/glocurrency/commons/compare/v0.55.0...v0.55.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* 10 sec ([0a717c4](https://github.com/glocurrency/commons/commit/0a717c4ccb1c6bf62d93f4243280fa83820a2dd0))
+
 ## [0.55.0](https://github.com/glocurrency/commons/compare/v0.54.0...v0.55.0) (2025-11-10)
 
 
