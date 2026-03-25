@@ -34,7 +34,10 @@ func Validate18YearsOld(fl validator.FieldLevel) bool {
 	now := time.Now()
 	age := now.Year() - dob.Year()
 
-	if now.YearDay() < dob.YearDay() {
+	// If the current month is before the birth month, OR
+	// it's the birth month but the current day is before the birth day...
+	// ...they haven't had their birthday yet this year.
+	if now.Month() < dob.Month() || (now.Month() == dob.Month() && now.Day() < dob.Day()) {
 		age--
 	}
 
@@ -50,7 +53,7 @@ func Validate100YearsOld(fl validator.FieldLevel) bool {
 	now := time.Now()
 	age := now.Year() - dob.Year()
 
-	if now.YearDay() < dob.YearDay() {
+	if now.Month() < dob.Month() || (now.Month() == dob.Month() && now.Day() < dob.Day()) {
 		age--
 	}
 

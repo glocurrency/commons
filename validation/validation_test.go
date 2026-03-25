@@ -54,7 +54,8 @@ func TestValidate18YearsOld(t *testing.T) {
 		{"Exactly 18", eighteenYearsAgo.Format("2006-01-02"), true},
 		{"Under 18", seventeenYearsAgo.Format("2006-01-02"), false},
 		{"Over 18", twentyYearsAgo.Format("2006-01-02"), true},
-		{"Way Over 18", "123456-01-01", false},
+		{"Way Over 18", "4000-01-01", false},
+		{"Invalid year format", "123456-01-01", false},
 		{"Invalid date", "invalid-date", false},
 	}
 
