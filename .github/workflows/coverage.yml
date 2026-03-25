@@ -18,9 +18,14 @@ jobs:
       with:
         mockery-version: '2.53.6'
     - run: make mock
-    - run: go test -race -covermode=atomic -coverprofile=coverage.out -v ./...
+    - run: go install gotest.tools/gotestsum@v1.13.0 
+    - run: gotestsum --junitfile junit.xml -- -race -covermode=atomic -coverprofile=coverage.out -v ./...
 
     - uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.out
+    - uses: codecov/test-results-action@v1
+      if: ${{ !cancelled() }}
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
