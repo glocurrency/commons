@@ -53,7 +53,7 @@ func RegisterTranslatorFor(v *validator.Validate) ut.Translator {
 	})
 
 	v.RegisterTranslation("banksupported", fallback, func(ut ut.Translator) error {
-		return ut.Add("banksupported", "{0} can only contain bank suported characters", true)
+		return ut.Add("banksupported", "{0} can only contain bank supported characters", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
 		t, _ := ut.T("banksupported", fe.Field())
 		return t
