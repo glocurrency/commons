@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"sync"
 	"time"
 
 	"google.golang.org/api/iamcredentials/v1"
@@ -18,16 +19,39 @@ type Client interface {
 
 var _ Client = (*client)(nil)
 
+// cachedToken holds the JWT and its absolute expiration time.
+type cachedToken struct {
+	token     string
+	expiresAt int64
+}
+
 type client struct {
 	iamCredsClient *iamcredentials.Service
+
+	// mu protects the cache map from concurrent read/writes
+	mu    sync.RWMutex
+	cache map[string]cachedToken
 }
 
 func NewClient(iamCredsClient *iamcredentials.Service) *client {
-	return &client{iamCredsClient: iamCredsClient}
+	return &client{
+		iamCredsClient: iamCredsClient,
+		cache:          make(map[string]cachedToken),
+	}
 }
 
 func (c *client) GenerateJWT(serviceAccount string, expiry int64) (string, error) {
 	now := time.Now().Unix()
+
+	c.mu.RLock()
+	cached, exists := c.cache[serviceAccount]
+	c.mu.RUnlock()
+
+	// We use a 60-second buffer to ensure the token doesn't expire
+	// while the HTTP request is in flight.
+	if exists && cached.expiresAt > now+60 {
+		return cached.token, nil
+	}
 
 	claims := ClaimSet{
 		Iat: now,
@@ -51,6 +75,13 @@ func (c *client) GenerateJWT(serviceAccount string, expiry int64) (string, error
 	if err != nil {
 		return "", fmt.Errorf("error signing jwt: %w", err)
 	}
+
+	c.mu.Lock()
+	c.cache[serviceAccount] = cachedToken{
+		token:     resp.SignedJwt,
+		expiresAt: now + expiry,
+	}
+	c.mu.Unlock()
 
 	return resp.SignedJwt, nil
 }
