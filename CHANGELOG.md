@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.56.0](https://github.com/glocurrency/commons/compare/v0.55.1...v0.56.0) (2026-03-25)
+
+
+### Features
+
+* 1.26 ([01672af](https://github.com/glocurrency/commons/commit/01672afc08ccb663ad774c48e68fb03d17601143))
+* cache ([490bdf7](https://github.com/glocurrency/commons/commit/490bdf754edc6d689c058fce6619c1436cc43600))
+
+
+### Bug Fixes
+
+* ctx ([24d03ae](https://github.com/glocurrency/commons/commit/24d03ae43754e2a157323e51b5dc808cb9277620))
+* deps ([a16905b](https://github.com/glocurrency/commons/commit/a16905bc5ccb33ec2353f03fc6eacbf0dff51f97))
+* deps ([2da741b](https://github.com/glocurrency/commons/commit/2da741bffa8f1987d01150f820c5502fa2bb4d87))
+* leap year ([b6c2f3b](https://github.com/glocurrency/commons/commit/b6c2f3b17cd6863e802afc3dd2a07a389885aaf5))
+* otel ([cc1a2f2](https://github.com/glocurrency/commons/commit/cc1a2f278a04e6426b0654b2a0f048ddadba072f))
+* typo ([0b3412c](https://github.com/glocurrency/commons/commit/0b3412c971211518c2e356f3bdd6fb587129bbda))
+
 ## [0.55.1](https://github.com/glocurrency/commons/compare/v0.55.0...v0.55.1) (2026-01-21)
 
 
