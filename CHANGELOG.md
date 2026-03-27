@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.57.0](https://github.com/glocurrency/commons/compare/v0.56.0...v0.57.0) (2026-03-27)
+
+
+### Features
+
+* pubsub v2 ([79630f7](https://github.com/glocurrency/commons/commit/79630f7899c6953692469670bbd91214e8941431))
+
 ## [0.56.0](https://github.com/glocurrency/commons/compare/v0.55.1...v0.56.0) (2026-03-25)
 
 
