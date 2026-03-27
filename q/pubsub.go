@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"cloud.google.com/go/pubsub"
+	"cloud.google.com/go/pubsub/v2"
 )
 
 type PubSubQ interface {
@@ -63,7 +63,7 @@ func (q *pubSubQ) EnqueueWithInfo(ctx context.Context, task *Task, opts ...PubSu
 
 	message.Attributes[groupKey] = topicID
 
-	topic := q.client.Topic(topicID)
+	topic := q.client.Publisher(topicID)
 	defer topic.Stop()
 
 	for _, opt := range opts {

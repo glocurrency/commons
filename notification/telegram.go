@@ -27,15 +27,20 @@ func WithButton(text, url string) MessageOption {
 	return withButton{text: text, url: url}
 }
 
+type TelegramSender interface {
+	Send(c tgbotapi.Chattable) (tgbotapi.Message, error)
+}
+
 type TelegramService interface {
 	Send(context.Context, string, ...MessageOption) error
 }
 
 type telegramService struct {
 	chatID int64
-	client *tgbotapi.BotAPI
+	client TelegramSender
 }
 
+// NewTelegramService initializes the real bot API.
 func NewTelegramService(token string, chatID int64) (*telegramService, error) {
 	client, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
@@ -45,7 +50,16 @@ func NewTelegramService(token string, chatID int64) (*telegramService, error) {
 	return &telegramService{chatID: chatID, client: client}, nil
 }
 
+// NewTelegramServiceWithClient allows injecting a custom/mocked client for testing.
+func NewTelegramServiceWithClient(client TelegramSender, chatID int64) *telegramService {
+	return &telegramService{chatID: chatID, client: client}
+}
+
 func (t *telegramService) Send(ctx context.Context, msg string, opts ...MessageOption) error {
+	if err := ctx.Err(); err != nil {
+		return fmt.Errorf("context cancelled before sending telegram message: %w", err)
+	}
+
 	m := tgbotapi.NewMessage(t.chatID, msg)
 
 	for _, opt := range opts {

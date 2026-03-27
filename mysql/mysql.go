@@ -19,6 +19,15 @@ func NewOrm(dsn string) (*gorm.DB, error) {
 		return nil, fmt.Errorf("cannot open mysql session: %w", err)
 	}
 
+	sqlDB, err := orm.DB()
+	if err != nil {
+		return nil, fmt.Errorf("cannot get underlying sql.DB: %w", err)
+	}
+
+	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxOpenConns(100)
+	sqlDB.SetConnMaxLifetime(time.Hour)
+
 	return orm, nil
 }
 
