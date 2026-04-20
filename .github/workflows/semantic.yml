@@ -6,7 +6,9 @@ on:
 
 jobs:
   optimize-pr:
-    if: github.actor != 'dependabot[bot]'
+    if: |
+      github.actor != 'dependabot[bot]' && 
+      !startsWith(github.head_ref, 'release-')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
