@@ -1,0 +1,23 @@
+name: semantic
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  optimize-pr:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: brokeyourbike/semantic-pr-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
