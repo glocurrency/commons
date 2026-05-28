@@ -1,0 +1,19 @@
+{
+  "features": {
+    "ghcr.io/brokeyourbike/devcontainer-features/mockery-go:0": {
+      "version": "0.2.0",
+      "resolved": "ghcr.io/brokeyourbike/devcontainer-features/mockery-go@sha256:d068a6f83d88151b618dbc9e54ad122157ab378c0ae41247f35144c92bab5547",
+      "integrity": "sha256:d068a6f83d88151b618dbc9e54ad122157ab378c0ae41247f35144c92bab5547"
+    },
+    "ghcr.io/brokeyourbike/devcontainer-features/reflex:0": {
+      "version": "0.2.0",
+      "resolved": "ghcr.io/brokeyourbike/devcontainer-features/reflex@sha256:226493a83e82b1f97afaf6c9ebe821d685d6fcbf1ea8ff31eb9fa98cc436ae7a",
+      "integrity": "sha256:226493a83e82b1f97afaf6c9ebe821d685d6fcbf1ea8ff31eb9fa98cc436ae7a"
+    },
+    "ghcr.io/brokeyourbike/devcontainer-features/staticcheck:0": {
+      "version": "0.2.0",
+      "resolved": "ghcr.io/brokeyourbike/devcontainer-features/staticcheck@sha256:e451e515e3af648bb551f682e3b2a5c4ce1d9a9ec929f73e1509b9233da0462d",
+      "integrity": "sha256:e451e515e3af648bb551f682e3b2a5c4ce1d9a9ec929f73e1509b9233da0462d"
+    }
+  }
+}

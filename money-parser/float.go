@@ -10,7 +10,6 @@ import (
 // Always rounding trailing decimals up.
 func NewFromFloat(amount float64, currency string) *money.Money {
 	currencyDecimals := math.Pow10(money.GetCurrency(currency).Fraction)
-	ratio := math.Pow(10, 2)
-	roundedAmount := math.Round(amount*ratio) / ratio
-	return money.New(int64(roundedAmount*currencyDecimals), currency)
+	minorUnits := int64(math.Round(amount * currencyDecimals))
+	return money.New(minorUnits, currency)
 }
