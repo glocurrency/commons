@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.0](https://github.com/glocurrency/commons/compare/v0.57.1...v0.58.0) (2026-07-11)
+
+
+### Features
+
+* max open ([6dac94b](https://github.com/glocurrency/commons/commit/6dac94b596045c65fea5699d537005e564bf22a0))
+
 ## [0.57.1](https://github.com/glocurrency/commons/compare/v0.57.0...v0.57.1) (2026-05-28)
 
 
