@@ -90,3 +90,15 @@ func TestDrop(t *testing.T) {
 		assert.NoError(t, mock.ExpectationsWereMet())
 	})
 }
+
+func TestFakeTx(t *testing.T) {
+	tx := &mysql.FakeTx{}
+	var called bool
+	err := tx.Transaction(func(db *gorm.DB) error {
+		called = true
+		assert.NotNil(t, db)
+		return nil
+	})
+	assert.NoError(t, err)
+	assert.True(t, called)
+}

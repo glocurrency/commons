@@ -2,6 +2,8 @@ package mysql
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 	"time"
 
 	"github.com/glocurrency/commons/logger"
@@ -24,8 +26,11 @@ func NewOrm(dsn string) (*gorm.DB, error) {
 		return nil, fmt.Errorf("cannot get underlying sql.DB: %w", err)
 	}
 
-	sqlDB.SetMaxIdleConns(10)
-	sqlDB.SetMaxOpenConns(100)
+	maxOpenConns := getEnvAsInt("MYSQL_DB_MAX_OPEN_CONNS", getEnvAsInt("DB_MAX_OPEN_CONNS", 20))
+	maxIdleConns := getEnvAsInt("MYSQL_DB_MAX_IDLE_CONNS", getEnvAsInt("DB_MAX_IDLE_CONNS", 5))
+
+	sqlDB.SetMaxIdleConns(maxIdleConns)
+	sqlDB.SetMaxOpenConns(maxOpenConns)
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	return orm, nil
@@ -39,4 +44,13 @@ func Migrate(orm *gorm.DB, dst ...interface{}) error {
 func Drop(orm *gorm.DB, dst ...interface{}) error {
 	mig := orm.Migrator()
 	return mig.DropTable(dst...)
+}
+
+func getEnvAsInt(name string, defaultVal int) int {
+	if valueStr, exists := os.LookupEnv(name); exists {
+		if val, err := strconv.Atoi(valueStr); err == nil {
+			return val
+		}
+	}
+	return defaultVal
 }
