@@ -1,6 +1,33 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    "security:only-security-updates"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["pin"],
+      "enabled": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "enabled": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchDepTypes": ["service", "container"],
+      "enabled": false
+    },
+    {
+      "matchManagers": ["docker-compose"],
+      "matchUpdateTypes": ["patch"],
+      "enabled": true
+    },
+    {
+      "matchManagers": ["docker-compose"],
+      "matchUpdateTypes": ["major", "minor"],
+      "enabled": false
+    }
   ]
 }
