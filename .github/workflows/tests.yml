@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-    - uses: actions/checkout@v6
-    - uses: actions/setup-go@v6
+    - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+    - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
       with:
         go-version-file: 'go.mod'
     - run: go build -v ./...
@@ -21,15 +21,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-go@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: 'go.mod'
-      - uses: brokeyourbike/go-mockery-action@v0.2
+      - uses: brokeyourbike/go-mockery-action@1e10ac1068b2410b26cccafa5c345a7f21bd758c # v0.2
         with:
           mockery-version: '2.53.6'
       - run: make mock
-      - uses: dominikh/staticcheck-action@v1
+      - uses: dominikh/staticcheck-action@9716614d4101e79b4340dd97b10e54d68234e431 # v1
         with:
           version: '2026.1'
           install-go: false
@@ -40,11 +40,11 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v6
-    - uses: actions/setup-go@v6
+    - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+    - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
       with:
         go-version-file: 'go.mod'
-    - uses: brokeyourbike/go-mockery-action@v0.2
+    - uses: brokeyourbike/go-mockery-action@1e10ac1068b2410b26cccafa5c345a7f21bd758c # v0.2
       with:
         mockery-version: '2.53.6'
     - run: make mock

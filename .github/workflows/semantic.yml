@@ -16,10 +16,10 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
-      - uses: brokeyourbike/semantic-pr-action@v1
+      - uses: brokeyourbike/semantic-pr-action@d4881620f1d8e876c292bb715152e7caf88458cb # v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
