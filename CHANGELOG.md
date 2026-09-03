@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.58.2](https://github.com/glocurrency/commons/compare/v0.58.1...v0.58.2) (2026-09-03)
+
+
+### Bug Fixes
+
+* **deps:** update module google.golang.org/grpc to v1.83.1 [security] ([b0a3bc6](https://github.com/glocurrency/commons/commit/b0a3bc6ab1ded3e53c407a984e109734cad04c65))
+* **deps:** update module google.golang.org/grpc to v1.83.1 [security] ([8cb2544](https://github.com/glocurrency/commons/commit/8cb2544c2b7e7d08a4a50f94ff3f5099165ef163))
+
 ## [0.58.1](https://github.com/glocurrency/commons/compare/v0.58.0...v0.58.1) (2026-07-23)
 
 
